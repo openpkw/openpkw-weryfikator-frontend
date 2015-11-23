@@ -1,318 +1,217 @@
-{
-    "swagger": "2.0",
-    "info": {
-        "version": "0.0.2",
-        "title": "OpenPKW frontend"
-    },
-    "paths": {
-        "/votes": {
-            "get": {
-                "description": "Get all votes\n",
-                "responses": {
-                    "200": {
-                        "description": "Successfull resonse",
-                        "schema": {
-                            "$ref": "#/definitions/allVotesAnswer"
-                        }
-                    }
-                }
-            }
-        },
-        "/districtVotes": {
-            "get": {
-                "description": "Gets votes in district\n",
-                "parameters": [
-                    {
-                        "name": "districtCommitteeNumber",
-                        "in": "query",
-                        "description": "District committe number",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfull response",
-                        "schema": {
-                            "$ref": "#/definitions/votesAnswer"
-                        }
-                    }
-                }
-            }
-        },
-        "/peripheralVotes": {
-            "get": {
-                "description": "Get votes in peripheral\n",
-                "parameters": [
-                    {
-                        "name": "districtCommitteeNumber",
-                        "in": "query",
-                        "description": "District committe number",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "teritorialCode",
-                        "in": "query",
-                        "description": "Teritorial code",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "peripheralCommitteeNumber",
-                        "in": "query",
-                        "required": true,
-                        "description": "Peripheral committee number",
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Sucessfull response",
-                        "schema": {
-                            "$ref": "#/definitions/votesAnswer"
-                        }
-                    }
-                }
-            }
-        },
-        "/districts": {
-            "get": {
-                "description": "Get list of districts\n",
-                "responses": {
-                    "200": {
-                        "description": "Successfull response",
-                        "schema": {
-                            "$ref": "#/definitions/districtsAnswer"
-                        }
-                    }
-                }
-            }
-        },
-        "/peripherals": {
-            "get": {
-                "description": "Get list of peripherals in district\n",
-                "parameters": [
-                    {
-                        "name": "districtCommitteeNumber",
-                        "in": "query",
-                        "description": "District committe number",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "peripheralCommitteeNumber",
-                        "in": "query",
-                        "type": "integer",
-                        "format": "int64",
-                        "required": false
-                    },
-                    {
-                        "name": "teritorialCode",
-                        "in": "query",
-                        "type": "string",
-                        "required": false
-                    },
-                    {
-                        "name": "town",
-                        "in": "query",
-                        "type": "string",
-                        "required": false
-                    },
-                    {
-                        "name": "street",
-                        "in": "query",
-                        "type": "string",
-                        "required": false
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Sucessfull response",
-                        "schema": {
-                            "$ref": "#/definitions/peripheralsAnswer"
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "candidate": {
-            "type": "object",
-            "properties": {
-                "names": {
-                    "type": "string"
-                },
-                "surrname": {
-                    "type": "string"
-                },
-                "number": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "votes": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            }
-        },
-        "voteCommittee": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "number": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "votes": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "candidates": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/candidate"
-                    }
-                }
-            }
-        },
-        "votesAnswer": {
-            "type": "object",
-            "properties": {
-                "voteCommittees": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/voteCommittee"
-                    }
-                },
-                "protocolNumber": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "protocolAllNumber": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "votersVoteNumber": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "allVotersNumber": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            }
-        },
-        "peripheralCommittee": {
-            "type": "object",
-            "properties": {
-                "number": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "teritorialCode": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
-        },
-        "districtCommittee": {
-            "type": "object",
-            "properties": {
-                "number": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "cities": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "peripherals": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/peripheralCommittee"
-                    }
-                }
-            }
-        },
-        "districtsAnswer": {
-            "type": "object",
-            "properties": {
-                "districts": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/districtCommittee"
-                    }
-                }
-            }
-        },
-        "peripheralsAnswer": {
-            "type": "object",
-            "properties": {
-                "peripherals": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/peripheralCommittee"
-                    }
-                }
-            }
-        },
-        "allVoteCommittee": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "number": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "votes": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            }
-        },
-        "allVotesAnswer": {
-            "type": "object",
-            "properties": {
-                "protocolNumber": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "protocolAllNumber": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "votersVoteNumber": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "allVotersNumber": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "voteCommittees": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/allVoteCommittee"
-                    }
-                }
-            }
-        }
-    }
-}
+swagger: '2.0'
+info:
+  version: 0.0.2
+  title: OpenPKW frontend
+paths:
+  /votes:
+    get:
+      description: |
+        Get all votes
+      responses:
+        '200':
+          description: Successfull resonse
+          schema:
+            $ref: '#/definitions/allVotesAnswer'
+  /districtVotes:
+    get:
+      description: |
+        Gets votes in district
+      parameters:
+        - name: districtCommitteeNumber
+          in: query
+          description: District committe number
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successfull response
+          schema:
+            $ref: '#/definitions/votesAnswer'
+  /peripheralVotes:
+    get:
+      description: |
+        Get votes in peripheral
+      parameters:
+        - name: districtCommitteeNumber
+          in: query
+          description: District committe number
+          required: true
+          type: integer
+          format: int64
+        - name: teritorialCode
+          in: query
+          description: Teritorial code
+          required: true
+          type: string
+        - name: peripheralCommitteeNumber
+          in: query
+          required: true
+          description: Peripheral committee number
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Sucessfull response
+          schema:
+            $ref: '#/definitions/votesAnswer'
+  /districts:
+    get:
+      description: |
+        Get list of districts
+      responses:
+        '200':
+          description: Successfull response
+          schema:
+            $ref: '#/definitions/districtsAnswer'
+  /peripherals:
+    get:
+      description: |
+        Get list of peripherals in district
+      parameters:
+        - name: districtCommitteeNumber
+          in: query
+          description: District committe number
+          required: true
+          type: integer
+          format: int64
+        - name: peripheralCommitteeNumber
+          in: query
+          type: integer
+          format: int64
+          required: false
+        - name: teritorialCode
+          in: query
+          type: string
+          required: false
+        - name: town
+          in: query
+          type: string
+          required: false
+        - name: street
+          in: query
+          type: string
+          required: false
+      responses:
+        '200':
+          description: Sucessfull response
+          schema:
+            $ref: '#/definitions/peripheralsAnswer'
+definitions:
+  candidate:
+    type: object
+    properties:
+      names:
+        type: string
+      surrname:
+        type: string
+      number:
+        type: integer
+        format: int64
+      votes:
+        type: integer
+        format: int64
+  voteCommittee:
+    type: object
+    properties:
+      name:
+        type: string
+      number:
+        type: integer
+        format: int64
+      votes:
+        type: integer
+        format: int64
+      candidates:
+        type: array
+        items:
+          $ref: '#/definitions/candidate'
+  votesAnswer:
+    type: object
+    properties:
+      voteCommittees:
+        type: array
+        items:
+          $ref: '#/definitions/voteCommittee'
+      protocolNumber:
+        type: integer
+        format: int64
+      protocolAllNumber:
+        type: integer
+        format: int64
+      votersVoteNumber:
+        type: integer
+        format: int64
+      allVotersNumber:
+        type: integer
+        format: int64
+  peripheralCommittee:
+    type: object
+    properties:
+      number:
+        type: integer
+        format: int64
+      teritorialCode:
+        type: string
+      name:
+        type: string
+  districtCommittee:
+    type: object
+    properties:
+      number:
+        type: integer
+        format: int64
+      cities:
+        type: array
+        items:
+          type: string
+      name:
+        type: string
+      peripherals:
+        type: array
+        items:
+          $ref: '#/definitions/peripheralCommittee'
+  districtsAnswer:
+    type: object
+    properties:
+      districts:
+        type: array
+        items:
+          $ref: '#/definitions/districtCommittee'
+  peripheralsAnswer:
+    type: object
+    properties:
+      peripherals:
+        type: array
+        items:
+          $ref: '#/definitions/peripheralCommittee'
+  allVoteCommittee:
+    type: object
+    properties:
+      name:
+        type: string
+      number:
+        type: integer
+        format: int64
+      votes:
+        type: integer
+        format: int64
+  allVotesAnswer:
+    type: object
+    properties:
+      protocolNumber:
+        type: integer
+        format: int64
+      protocolAllNumber:
+        type: integer
+        format: int64
+      votersVoteNumber:
+        type: integer
+        format: int64
+      allVotersNumber:
+        type: integer
+        format: int64
+      voteCommittees:
+        type: array
+        items:
+          $ref: '#/definitions/allVoteCommittee'

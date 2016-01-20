@@ -2,7 +2,8 @@
 'use strict';
 
 var config = {
-    app: 'src', //app sources
+    app: 'src/main', // app sources
+    gen: 'src/gen', // gen sources
     dist: 'dist', // builded app
     livereloadPort: 35729,
     backendProxy: 'dobromir.openpkw.pl'
@@ -51,19 +52,79 @@ module.exports = function(grunt) {
                 }
             }
         },
-
-        watch: {
-            js: {
-                files: ['<%= config.app %>/assets/js/{,*/}*.js',
-                            '<%= config.app %>/app/{,*/}{,*/}{,*/}*.js'],
-                tasks: ['newer:jshint:all'],
-                options: {
-                    livereload: '<%= config.livereloadPort %>'
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: ['es2015'],
+                plugins: ["transform-es2015-modules-amd"]
+            },
+            dev: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.app %>/scripts',
+                    src: '{,*/}*.js',
+                    dest: '<%= config.gen %>/js',
+                    ext: '.js'
+                }]
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.app %>/scripts',
+                    src: '{,*/}*.js',
+                    dest: '<%= config.dist %>/js',
+                    ext: '.js'
+                }]
+            }
+        },
+        concat: {
+            dev: {
+                src: [
+                    '<%= config.app %>/styles/scss/**/*.scss'
+                ],
+                dest: '.tmp/scss/openpkw.scss'
+            },
+            dist: {
+                src: [
+                    '<%= config.app %>/styles/scss/**/*.scss'
+                ],
+                dest: '.tmp/scss/openpkw.scss'
+            }
+        },
+        sass: {
+            options: {
+                sourceMap: true
+            },
+            dev: {
+                files: {
+                    '<%= config.gen %>/css/openpkw.css': '.tmp/scss/openpkw.scss'
                 }
             },
-
+            dist: {
+                files: {
+                    '<%= config.dist %>/assets/css/openpkw.css': '.tmp/scss/openpkw.scss'
+                }
+            }
+        },
+        watch: {
+            babel: {
+                files: '<%= config.app %>/scripts/**/*.js',
+                tasks: ['babel:dev']
+            },
             gruntfile: {
                 files: ['Gruntfile.js']
+            },
+            css: {
+                files: ['<%= config.app %>/styles/scss/**/*.scss'],
+                tasks: ['concat:dev', 'sass:dev'],
+                options: {
+                    spawn: false,
+                    livereload: true
+                }
+            },
+            copy: {
+                files: ['<%= config.app %>/**/*.*'],
+                tasks: ['copy:dev']
             },
             livereload: {
                 options: {
@@ -71,43 +132,13 @@ module.exports = function(grunt) {
                     spawn: true
                 },
                 files: [
-                    '<%= config.app %>/index.html',
-                    '<%= config.app %>/app/*.html',
-                    '<%= config.app %>/app/components/{,*/}*.html',
-                    '<%= config.app %>/assets/css/{,*/}*.css',
+                    '<%= config.gen %>/index.html',
+                    '<%= config.gen %>/*.html',
+                    '<%= config.gen %>/components/{,*/}*.html',
+                    '<%= config.gen %>/css/{,*/}*.css',
                     '.tmp/css/{,*/}*.css',
-                    '<%= config.app %>/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                    '<%= config.gen %>/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
-            }
-        },
-
-        jshint: {
-            options: {
-                globalstrict: true,
-                reporter: require('jshint-stylish'),
-                jshintrc: '.jshintrc',
-                jasmine: true,
-            },
-            all: {
-                src: [
-                    'Gruntfile.js',
-                    '<%= config.app %>/assets/js/{,*/}{,*/}{,*/}{,*/}*.js',
-                    '<%= config.app %>/app/components/{,*/}{,*/}{,*/}{,*/}*.js',
-                    '<%= config.app %>/app/*.js',
-                    '<%= config.app %>/*.js'
-                ]
-            },
-        },
-        jscs: {
-            all: [
-                'Gruntfile.js',
-                '<%= config.app %>/assets/js/{,*/}{,*/}{,*/}{,*/}*.js',
-                '<%= config.app %>/app/components/{,*/}{,*/}{,*/}{,*/}*.js',
-                '<%= config.app %>/app/*.js',
-                '<%= config.app %>/*.js'
-            ],
-            options: {
-                config: '.jscsrc'
             }
         },
 
@@ -117,6 +148,7 @@ module.exports = function(grunt) {
                     dot: true,
                     src: [
                         '.tmp',
+                        '<%= config.gen %>/{,*/}*',
                         '<%= config.dist %>/{,*/}*',
                         '!<%= config.dist %>/.git*'
                     ]
@@ -126,17 +158,33 @@ module.exports = function(grunt) {
         },
 
         copy: {
-            dist: {
-                files: [{
+            dev: {
+                files: [
+                    {expand: true, src: ['<%= config.app %>/styles/css/*.css'], flatten: true, dest: '<%= config.gen %>/css', filter: 'isFile'},
+                    {
                     // includes files within path
                     expand: true,
                     cwd: '<%= config.app %>',
-                    src: ['*.htaccess', 'index.html', 'app/components/{,*/}{,*/}*.html',
-                             'assets/resources/*'],
+                    src: ['index.html', 'scripts/components/{,*/}{,*/}*.html',
+                        'resources/*'],
+                    dest: '<%= config.gen %>',
+                    filter: 'isFile',
+                    nonull: true
+                }]
+            },
+            dist: {
+                files: [
+                    {expand: true, src: ['<%= config.app %>/styles/css/*.css'], flatten: true, dest: '<%= config.dist %>/css', filter: 'isFile'},
+                    {
+                    // includes files within path
+                    expand: true,
+                    cwd: '<%= config.app %>',
+                    src: ['index.html', 'scripts/components/{,*/}{,*/}*.html',
+                             'resources/*'],
                     dest: '<%= config.dist %>',
                     filter: 'isFile',
                     nonull: true
-                }],
+                }]
             }
         },
         htmlmin: {
@@ -176,7 +224,9 @@ module.exports = function(grunt) {
             }
         },
         useminPrepare: {
+/*
             html: '<%= config.app %>/index.html',
+*/
             options: {
                 dest: '<%= config.dist %>',
                 flow: {
@@ -191,7 +241,9 @@ module.exports = function(grunt) {
             }
         },
         usemin: {
-            html: ['<%= config.dist %>/{,*/}*.html'],
+/*
+            html: ['<%= config.dist %>/{,*!/}*.html'],
+*/
             css: ['<%= config.dist %>/css/*.css'],
             options: {
                 assetsDirs: ['<%= config.dist %>']
@@ -237,14 +289,14 @@ module.exports = function(grunt) {
                     'cbpAnimatedHeader.js': 'AnimatedHeader/js/cbpAnimatedHeader.min.js'
                 }
             },
-            /*css:{
+            css: {
                 options: {
                     destPrefix: '<%= config.dist %>/css'
                 },
                 files: {
                     'bootstrap.min.css':'bootstrap/dist/css/bootstrap.min.css'
                 }
-            }*/
+            }
         },
 
         connect: {
@@ -257,7 +309,7 @@ module.exports = function(grunt) {
             livereload: {
                 options: {
                     open: true,
-                    base: [config.app, '.tmp'],
+                    base: [config.gen, '.tmp'],
                     middleware: function(connect, options) {
                         if (!Array.isArray(options.base)) {
                             options.base = [options.base];
@@ -339,14 +391,17 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['watch']);
 
-    grunt.registerTask('build', ['clean', 'jshint', 'jscs', 'copy', 'wiredep', 'useminPrepare',
-                 'concat', 'uglify', /*'karma:dist',*/ 'cssmin', 'filerev', 'usemin', 'htmlmin'
+    grunt.registerTask('compile', ['clean', 'babel:dev', 'concat:dev', 'sass:dev', 'copy']);
+
+    /* TODO: fix build, karma, add eslint */
+    grunt.registerTask('build', ['clean', 'babel:dist', 'copy:dist', 'bowercopy:css', 'bowercopy:js', 'wiredep', 'useminPrepare',
+                 'concat:dist', 'uglify', /*'karma:dist',*/ 'cssmin', 'filerev', 'usemin', 'htmlmin'
     ]);
 
-    grunt.registerTask('server-dev', ['configureProxies', 'connect:livereload', 'watch']);
+    grunt.registerTask('server-dev', ['configureProxies', 'compile', 'connect:livereload', 'watch']);
     grunt.registerTask('server-prod', ['configureProxies', 'connect:prod:keepalive']);
 
-    grunt.registerTask('test', ['jshint', 'jscs', 'karma:unit']);
+    grunt.registerTask('test', ['karma:unit']);
 
     if (scpPrivateKey !== false) {
         grunt.registerTask('deploy', ['scp']);

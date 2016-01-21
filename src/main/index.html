@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html ng-app="opkwApp" lang="pl">
 
 <head>
 
@@ -30,13 +30,13 @@
 
 </head>
 
-<body id="page-top" class="index">
+<body ng-controller="mainController as mainCtrl" id="page-top" class="index">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header page-scroll">
-                <a class="navbar-brand" href="#page-top">OpenPKW</a>
+                <a class="navbar-brand" href="#page-top">{{ mainCtrl.name }}</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -55,7 +55,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive" src="img/opkw.png" alt="">
+                    <img class="img-responsive" src="img/baner_openpkw.png" alt="">
                     <div class="intro-text">
                         <hr class="star-light">
                         <span class="skills">Wybory ???</span>
@@ -164,7 +164,6 @@
 
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angularjs/angular.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/classie/classie.js"></script>
@@ -175,7 +174,7 @@
     <script src="bower_components/mocha/mocha.js"></script>
     <script src="bower_components/morris.js/morris.js"></script>
     <!-- endbower -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js" data-main="js/bootstrap.js"></script>
+    <script src="js/openpkw.js"></script>
 
     <!-- endbuild -->
 

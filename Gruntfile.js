@@ -52,31 +52,6 @@ module.exports = function(grunt) {
                 }
             }
         },
-        babel: {
-            options: {
-                sourceMap: true,
-                presets: ['es2015'],
-                plugins: ["transform-es2015-modules-amd"]
-            },
-            dev: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.app %>/scripts',
-                    src: '{,*/}*.js',
-                    dest: '<%= config.gen %>/js',
-                    ext: '.js'
-                }]
-            },
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.app %>/scripts',
-                    src: '{,*/}*.js',
-                    dest: '<%= config.dist %>/js',
-                    ext: '.js'
-                }]
-            }
-        },
         concat: {
             dev: {
                 src: [
@@ -106,10 +81,34 @@ module.exports = function(grunt) {
                 }
             }
         },
+        browserify: {
+            dev: {
+                files: {
+                    '<%= config.gen %>/js/openpkw.js': ['<%= config.app %>/scripts/openpkw.js']
+                },
+                options: {
+                    transform: ['babelify'],
+                    browserifyOptions: {
+                        debug: true
+                    }
+                }
+            },
+            dist: {
+                files: {
+                    '<%= config.dist %>/js/openpkw.js': ['<%= config.app %>/scripts/openpkw.js']
+                },
+                options: {
+                    transform: ['babelify'],
+                    browserifyOptions: {
+                        debug: true
+                    }
+                }
+            }
+        },
         watch: {
-            babel: {
+            js: {
                 files: '<%= config.app %>/scripts/**/*.js',
-                tasks: ['babel:dev']
+                tasks: ['browserify']
             },
             gruntfile: {
                 files: ['Gruntfile.js']
@@ -134,10 +133,10 @@ module.exports = function(grunt) {
                 files: [
                     '<%= config.gen %>/index.html',
                     '<%= config.gen %>/*.html',
-                    '<%= config.gen %>/components/{,*/}*.html',
-                    '<%= config.gen %>/css/{,*/}*.css',
-                    '.tmp/css/{,*/}*.css',
-                    '<%= config.gen %>/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                    '<%= config.gen %>/components/**/*.html',
+                    '<%= config.gen %>/css/**/*.css',
+                    '.tmp/css/**/*.css',
+                    '<%= config.gen %>/assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
         },
@@ -148,8 +147,8 @@ module.exports = function(grunt) {
                     dot: true,
                     src: [
                         '.tmp',
-                        '<%= config.gen %>/{,*/}*',
-                        '<%= config.dist %>/{,*/}*',
+                        '<%= config.gen %>/**/*',
+                        '<%= config.dist %>/**/*',
                         '!<%= config.dist %>/.git*'
                     ]
                 }]
@@ -161,12 +160,12 @@ module.exports = function(grunt) {
             dev: {
                 files: [
                     {expand: true, src: ['<%= config.app %>/styles/css/*.css'], flatten: true, dest: '<%= config.gen %>/css', filter: 'isFile'},
+                    {expand: true, src: ['<%= config.app %>/assets/img/*.*'], flatten: true, dest: '<%= config.gen %>/img', filter: 'isFile'},
                     {
                     // includes files within path
                     expand: true,
                     cwd: '<%= config.app %>',
-                    src: ['index.html', 'scripts/components/{,*/}{,*/}*.html',
-                        'resources/*'],
+                    src: ['index.html', 'scripts/components/**/*.html'],
                     dest: '<%= config.gen %>',
                     filter: 'isFile',
                     nonull: true
@@ -179,7 +178,7 @@ module.exports = function(grunt) {
                     // includes files within path
                     expand: true,
                     cwd: '<%= config.app %>',
-                    src: ['index.html', 'scripts/components/{,*/}{,*/}*.html',
+                    src: ['index.html', 'scripts/components/**/*.html',
                              'resources/*'],
                     dest: '<%= config.dist %>',
                     filter: 'isFile',
@@ -199,7 +198,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= config.dist %>',
-                    src: ['*.html', 'app/components/{,*/}{,*/}*.html'],
+                    src: ['*.html', 'app/components/**/*.html'],
                     dest: '<%= config.dist %>'
                 }]
             }
@@ -224,9 +223,7 @@ module.exports = function(grunt) {
             }
         },
         useminPrepare: {
-/*
             html: '<%= config.app %>/index.html',
-*/
             options: {
                 dest: '<%= config.dist %>',
                 flow: {
@@ -241,9 +238,7 @@ module.exports = function(grunt) {
             }
         },
         usemin: {
-/*
-            html: ['<%= config.dist %>/{,*!/}*.html'],
-*/
+            html: ['<%= config.dist %>/{,*/}*.html'],
             css: ['<%= config.dist %>/css/*.css'],
             options: {
                 assetsDirs: ['<%= config.dist %>']
@@ -391,10 +386,10 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['watch']);
 
-    grunt.registerTask('compile', ['clean', 'babel:dev', 'concat:dev', 'sass:dev', 'copy']);
+    grunt.registerTask('compile', ['clean', 'browserify', 'concat:dev', 'sass:dev', 'copy']);
 
     /* TODO: fix build, karma, add eslint */
-    grunt.registerTask('build', ['clean', 'babel:dist', 'copy:dist', 'bowercopy:css', 'bowercopy:js', 'wiredep', 'useminPrepare',
+    grunt.registerTask('build', ['clean', 'browserify', 'copy:dist', 'sass:dist', /*'bowercopy:css'*/, 'bowercopy:js', 'wiredep', 'useminPrepare',
                  'concat:dist', 'uglify', /*'karma:dist',*/ 'cssmin', 'filerev', 'usemin', 'htmlmin'
     ]);
 

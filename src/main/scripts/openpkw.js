@@ -1,3 +1,5 @@
-import MainController from './components/main/main.ctrl';
+import MainController from './components/main/main.controller.js';
+import ElectionMap from './components/map';
 
-angular.module('opkwApp', []).controller('mainController', MainController);
+angular.module('opkwApp', [ElectionMap])
+    .controller('mainController', MainController);

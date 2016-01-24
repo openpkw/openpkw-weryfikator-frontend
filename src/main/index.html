@@ -64,11 +64,27 @@
             </div>
         </div>
     </header>
-<div class="col-md-10 col-md-offset-1">
-    <div class="hpanel">
+    <div class="col-md-16 col-md-offset-0">
+        <div class="hpanel">
             <div class="panel-body">
-                <h3>Wyniki dla </h3>
+                <div class="col-md-4">
+                    <h2>Wyniki dla: {{ mainCtrl.district.id }}</h2>
+                    <p>Tabela wyników:</p>
+                    <ul>
+                        <li>bla</li>
+                        <li>bla</li>
+                        <li>bla</li>
+                        <li>bla</li>
+                        <li>...</li>
+                    </ul>
+                </div>
+                <div class="col-md-8" data-election-map election-type="PARLIAMENT" scale="60%" selected-district="mainCtrl.district"></div>
             </div>
+        </div>
+    </div>
+
+    <div class="col-md-10 col-md-offset-1">
+    <div class="hpanel">
             <div class="panel-body">
                 <dl>
                     <div class="row show-grid">

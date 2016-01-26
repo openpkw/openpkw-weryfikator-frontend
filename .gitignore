@@ -3,5 +3,5 @@ dist/
 .tmp/
 .idea/
 bower_components/
-src/gen/
+gen/
 npm-debug.log

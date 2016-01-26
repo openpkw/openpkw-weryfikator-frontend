@@ -2,8 +2,8 @@
 'use strict';
 
 var config = {
-    app: 'src/main', // app sources
-    gen: 'src/gen', // gen sources
+    app: 'src', // app sources
+    gen: 'gen', // gen sources
     dist: 'dist', // builded app
     livereloadPort: 35729,
     backendProxy: 'dobromir.openpkw.pl'
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                    '<%= config.app %>/styles/scss/**/*.scss'
+                    '<%= config.app %>/scss/**/*.scss'
                 ],
                 dest: '.tmp/scss/openpkw.scss'
             }
@@ -81,7 +81,7 @@ module.exports = function(grunt) {
         browserify: {
             dev: {
                 files: {
-                    '<%= config.gen %>/js/openpkw.js': ['<%= config.app %>/scripts/openpkw.js']
+                    '<%= config.gen %>/js/openpkw.js': ['<%= config.app %>/es2015/openpkw.js']
                 },
                 options: {
                     transform: ['babelify'],
@@ -92,7 +92,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    '<%= config.dist %>/js/openpkw.js': ['<%= config.app %>/scripts/openpkw.js']
+                    '<%= config.dist %>/js/openpkw.js': ['<%= config.app %>/es2015/openpkw.js']
                 },
                 options: {
                     transform: ['babelify'],
@@ -104,14 +104,14 @@ module.exports = function(grunt) {
         },
         watch: {
             js: {
-                files: '<%= config.app %>/scripts/**/*.js',
+                files: '<%= config.app %>/es2015/**/*.js',
                 tasks: ['browserify']
             },
             gruntfile: {
                 files: ['Gruntfile.js']
             },
             css: {
-                files: ['<%= config.app %>/styles/scss/**/*.scss'],
+                files: ['<%= config.app %>/scss/**/*.scss'],
                 tasks: ['concat', 'sass:dev'],
                 options: {
                     spawn: false,
@@ -130,10 +130,10 @@ module.exports = function(grunt) {
                 files: [
                     '<%= config.gen %>/index.html',
                     '<%= config.gen %>/*.html',
-                    '<%= config.gen %>/components/**/*.html',
+                    '<%= config.gen %>/**/components/**/*.html',
                     '<%= config.gen %>/css/**/*.css',
                     '.tmp/css/**/*.css',
-                    '<%= config.gen %>/assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
+                    '<%= config.gen %>/img/**/*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
         },
@@ -156,13 +156,13 @@ module.exports = function(grunt) {
         copy: {
             dev: {
                 files: [
-                    {expand: true, src: ['<%= config.app %>/styles/css/*.css'], flatten: true, dest: '<%= config.gen %>/css', filter: 'isFile'},
-                    {expand: true, src: ['<%= config.app %>/assets/img/*.*'], flatten: true, dest: '<%= config.gen %>/img', filter: 'isFile'},
+                    {expand: true, src: ['<%= config.app %>/css/*.css'], flatten: true, dest: '<%= config.gen %>/css', filter: 'isFile'},
+                    {expand: true, src: ['<%= config.app %>/img/*.*'], flatten: true, dest: '<%= config.gen %>/img', filter: 'isFile'},
                     {
                     // includes files within path
                     expand: true,
                     cwd: '<%= config.app %>',
-                    src: ['index.html', 'scripts/components/**/*.html', '/assets/resources/*'],
+                    src: ['index.html', 'es2015/components/**/*.html', 'resources/*'],
                     dest: '<%= config.gen %>',
                     filter: 'isFile',
                     nonull: true
@@ -171,14 +171,14 @@ module.exports = function(grunt) {
             dist: {
                 files: [
                     //{expand: true, src: ['<%= config.app %>/styles/css/*.css'], flatten: true, dest: '<%= config.dist %>/css', filter: 'isFile'},
-                    {expand: true, src: ['<%= config.app %>/assets/img/*.*'], flatten: true, dest: '<%= config.dist %>/img', filter: 'isFile'},
+                    {expand: true, src: ['<%= config.app %>/img/*.*'], flatten: true, dest: '<%= config.dist %>/img', filter: 'isFile'},
                     {expand: true, src: ['bower_components/font-awesome/fonts/*.*'], flatten: true, dest: '<%= config.dist %>/fonts', filter: 'isFile'},
                     {
                     // includes files within path
                     expand: true,
                     cwd: '<%= config.app %>',
-                    src: ['index.html', 'scripts/components/**/*.html',
-                             '/assets/resources/*'],
+                    src: ['index.html', 'es2015/components/**/*.html',
+                             'resources/*'],
                     dest: '<%= config.dist %>',
                     filter: 'isFile',
                     nonull: true
@@ -197,7 +197,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= config.dist %>',
-                    src: ['*.html', 'app/components/**/*.html'],
+                    src: ['*.html', 'es2015/components/**/*.html'],
                     dest: '<%= config.dist %>'
                 }]
             }
@@ -255,43 +255,43 @@ module.exports = function(grunt) {
         },
 
         // Automatically inject Bower components into the app
-        //wiredep: {
-        //    app: {
-        //        src: ['<%= config.app %>/index.html'],
-        //        ignorePath: /\.\.\//
-        //    }
-        //},
-        //bowercopy: {
-        //    options: {
-        //        // Bower components folder will be removed afterwards
-        //        clean: false
-        //    },
-        //    // Anything can be copied
-        //    js: {
-        //        options: {
-        //            destPrefix: '.tmp/vendors/'
-        //        },
-        //        files: {
-        //            // Keys are destinations (prefixed with `options.destPrefix`)
-        //            // Values are sources (prefixed with `options.srcPrefix`); One source per destination
-        //            // e.g. 'bower_components/chai/lib/chai.js' will be copied to 'test/js/libs/chai.js'
-        //            'angular.js': 'angular/angular.min.js',
-        //            'angular.route.js': 'angular-route/angular-route.min.js',
-        //            'jquery.js': 'jquery/dist/jquery.min.js',
-        //            'datatables.js': 'datatables/media/js/jquery.dataTables.js',
-        //            'jquery.easing.js': 'jquery.easing/js/jquery.easing.js',
-        //            'cbpAnimatedHeader.js': 'AnimatedHeader/js/cbpAnimatedHeader.min.js'
-        //        }
-        //    },
-        //    css: {
-        //        options: {
-        //            destPrefix: '<%= config.dist %>/css'
-        //        }/*,
-        //        files: {
-        //            'bootstrap.min.css':'bootstrap/dist/css/bootstrap.min.css'
-        //        }*/
-        //    }
-        //},
+        wiredep: {
+            app: {
+                src: ['<%= config.app %>/index.html'],
+                ignorePath: /\.\.\//
+            }
+        },
+        bowercopy: {
+            options: {
+                // Bower components folder will be removed afterwards
+                clean: false
+            },
+            // Anything can be copied
+            js: {
+                options: {
+                    destPrefix: '.tmp/vendors/'
+                },
+                files: {
+                    // Keys are destinations (prefixed with `options.destPrefix`)
+                    // Values are sources (prefixed with `options.srcPrefix`); One source per destination
+                    // e.g. 'bower_components/chai/lib/chai.js' will be copied to 'test/js/libs/chai.js'
+                    'angular.js': 'angular/angular.min.js',
+                    'angular.route.js': 'angular-route/angular-route.min.js',
+                    'jquery.js': 'jquery/dist/jquery.min.js',
+                    'datatables.js': 'datatables/media/js/jquery.dataTables.js',
+                    'jquery.easing.js': 'jquery.easing/js/jquery.easing.js',
+                    'cbpAnimatedHeader.js': 'AnimatedHeader/js/cbpAnimatedHeader.min.js'
+                }
+            },
+            css: {
+                options: {
+                    destPrefix: '<%= config.dist %>/css'
+                },
+                files: {
+                    //'bootstrap.min.css':'bootstrap/dist/css/bootstrap.min.css'
+                }
+            }
+        },
 
         connect: {
             options: {

@@ -18,7 +18,7 @@
   ],
   "main": "index.html",
   "dependencies": {
-    "angularjs": "~1.4.8",
+    "angular": "~1.4.8",
     "angular-route": "~1.4.8",
     "jquery": "~2.1.4",
     "AnimatedHeader": "codrops/AnimatedHeader",

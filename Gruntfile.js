@@ -45,7 +45,7 @@ module.exports = function(grunt) {
                 options: {
                     files: [
                         '<%= config.dist %>/js/vendors.min.js',
-                        '<%= config.dist %>/js/myapp.js',
+                        '<%= config.dist %>/js/openpkw.js',
                         'bower_components/angular-mocks/angular-mocks.js',
                         'tests/specs/**/*.js'
                     ]
@@ -53,11 +53,8 @@ module.exports = function(grunt) {
             }
         },
         concat: {
-            dev: {
-                src: [
-                    '<%= config.app %>/styles/scss/**/*.scss'
-                ],
-                dest: '.tmp/scss/openpkw.scss'
+            options: {
+                sourceMap: false
             },
             dist: {
                 src: [
@@ -77,7 +74,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    '<%= config.dist %>/assets/css/openpkw.css': '.tmp/scss/openpkw.scss'
+                    '<%= config.dist %>/css/openpkw.css': '.tmp/scss/openpkw.scss'
                 }
             }
         },
@@ -100,7 +97,7 @@ module.exports = function(grunt) {
                 options: {
                     transform: ['babelify'],
                     browserifyOptions: {
-                        debug: true
+                        debug: false
                     }
                 }
             }
@@ -115,7 +112,7 @@ module.exports = function(grunt) {
             },
             css: {
                 files: ['<%= config.app %>/styles/scss/**/*.scss'],
-                tasks: ['concat:dev', 'sass:dev'],
+                tasks: ['concat', 'sass:dev'],
                 options: {
                     spawn: false,
                     livereload: true
@@ -165,7 +162,7 @@ module.exports = function(grunt) {
                     // includes files within path
                     expand: true,
                     cwd: '<%= config.app %>',
-                    src: ['index.html', 'scripts/components/**/*.html'],
+                    src: ['index.html', 'scripts/components/**/*.html', '/assets/resources/*'],
                     dest: '<%= config.gen %>',
                     filter: 'isFile',
                     nonull: true
@@ -173,13 +170,15 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: [
-                    {expand: true, src: ['<%= config.app %>/styles/css/*.css'], flatten: true, dest: '<%= config.dist %>/css', filter: 'isFile'},
+                    //{expand: true, src: ['<%= config.app %>/styles/css/*.css'], flatten: true, dest: '<%= config.dist %>/css', filter: 'isFile'},
+                    {expand: true, src: ['<%= config.app %>/assets/img/*.*'], flatten: true, dest: '<%= config.dist %>/img', filter: 'isFile'},
+                    {expand: true, src: ['bower_components/font-awesome/fonts/*.*'], flatten: true, dest: '<%= config.dist %>/fonts', filter: 'isFile'},
                     {
                     // includes files within path
                     expand: true,
                     cwd: '<%= config.app %>',
                     src: ['index.html', 'scripts/components/**/*.html',
-                             'resources/*'],
+                             '/assets/resources/*'],
                     dest: '<%= config.dist %>',
                     filter: 'isFile',
                     nonull: true
@@ -206,7 +205,7 @@ module.exports = function(grunt) {
         filerev: {
             dist: {
                 src: ['<%= config.dist %>/css/*.css',
-                    '<%= config.dist %>/scripts/*.js',
+                    '<%= config.dist %>/js/*.js'
                 ]
             }
         },
@@ -215,10 +214,10 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '.tmp/concat/css',
+                    cwd: '<%= config.dist %>/css',
                     src: ['*.css', '!*.min.css'],
                     dest: '<%= config.dist %>/css',
-                    ext: '.min.css'
+                    ext: '.css'
                 }]
             }
         },
@@ -238,7 +237,7 @@ module.exports = function(grunt) {
             }
         },
         usemin: {
-            html: ['<%= config.dist %>/{,*/}*.html'],
+            html: ['<%= config.dist %>/**/*.html'],
             css: ['<%= config.dist %>/css/*.css'],
             options: {
                 assetsDirs: ['<%= config.dist %>']
@@ -249,50 +248,50 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= config.dist %>/js',
-                    src: ['myapp.js', 'vendors.min.js'],
+                    src: ['openpkw.js', 'vendors.min.js'],
                     dest: '<%= config.dist %>/js'
                 }]
             }
         },
 
         // Automatically inject Bower components into the app
-        wiredep: {
-            app: {
-                src: ['<%= config.app %>/index.html'],
-                ignorePath: /\.\.\//
-            }
-        },
-        bowercopy: {
-            options: {
-                // Bower components folder will be removed afterwards
-                clean: false
-            },
-            // Anything can be copied
-            js: {
-                options: {
-                    destPrefix: '.tmp/vendors/'
-                },
-                files: {
-                    // Keys are destinations (prefixed with `options.destPrefix`)
-                    // Values are sources (prefixed with `options.srcPrefix`); One source per destination
-                    // e.g. 'bower_components/chai/lib/chai.js' will be copied to 'test/js/libs/chai.js'
-                    'angular.js': 'angular/angular.min.js',
-                    'angular.route.js': 'angular-route/angular-route.min.js',
-                    'jquery.js': 'jquery/dist/jquery.min.js',
-                    'datatables.js': 'datatables/media/js/jquery.dataTables.js',
-                    'jquery.easing.js': 'jquery.easing/js/jquery.easing.js',
-                    'cbpAnimatedHeader.js': 'AnimatedHeader/js/cbpAnimatedHeader.min.js'
-                }
-            },
-            css: {
-                options: {
-                    destPrefix: '<%= config.dist %>/css'
-                },
-                files: {
-                    'bootstrap.min.css':'bootstrap/dist/css/bootstrap.min.css'
-                }
-            }
-        },
+        //wiredep: {
+        //    app: {
+        //        src: ['<%= config.app %>/index.html'],
+        //        ignorePath: /\.\.\//
+        //    }
+        //},
+        //bowercopy: {
+        //    options: {
+        //        // Bower components folder will be removed afterwards
+        //        clean: false
+        //    },
+        //    // Anything can be copied
+        //    js: {
+        //        options: {
+        //            destPrefix: '.tmp/vendors/'
+        //        },
+        //        files: {
+        //            // Keys are destinations (prefixed with `options.destPrefix`)
+        //            // Values are sources (prefixed with `options.srcPrefix`); One source per destination
+        //            // e.g. 'bower_components/chai/lib/chai.js' will be copied to 'test/js/libs/chai.js'
+        //            'angular.js': 'angular/angular.min.js',
+        //            'angular.route.js': 'angular-route/angular-route.min.js',
+        //            'jquery.js': 'jquery/dist/jquery.min.js',
+        //            'datatables.js': 'datatables/media/js/jquery.dataTables.js',
+        //            'jquery.easing.js': 'jquery.easing/js/jquery.easing.js',
+        //            'cbpAnimatedHeader.js': 'AnimatedHeader/js/cbpAnimatedHeader.min.js'
+        //        }
+        //    },
+        //    css: {
+        //        options: {
+        //            destPrefix: '<%= config.dist %>/css'
+        //        }/*,
+        //        files: {
+        //            'bootstrap.min.css':'bootstrap/dist/css/bootstrap.min.css'
+        //        }*/
+        //    }
+        //},
 
         connect: {
             options: {
@@ -386,11 +385,11 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['watch']);
 
-    grunt.registerTask('compile', ['clean', 'browserify', 'concat:dev', 'sass:dev', 'copy']);
+    grunt.registerTask('compile', ['clean', 'browserify:dev', 'concat', 'sass:dev', 'copy']);
 
     /* TODO: fix build, karma, add eslint */
-    grunt.registerTask('build', ['clean', 'browserify', 'copy:dist', 'sass:dist', /*'bowercopy:css'*/, 'bowercopy:js', 'wiredep', 'useminPrepare',
-                 'concat:dist', 'uglify', /*'karma:dist',*/ 'cssmin', 'filerev', 'usemin', 'htmlmin'
+    grunt.registerTask('build', ['clean', 'browserify:dist', 'copy:dist', /*'wiredep',*/ 'useminPrepare',
+        'concat', 'sass:dist', 'uglify', /*'karma:dist',*/ 'cssmin', 'filerev', 'usemin', 'htmlmin'
     ]);
 
     grunt.registerTask('server-dev', ['configureProxies', 'compile', 'connect:livereload', 'watch']);

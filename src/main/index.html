@@ -11,15 +11,15 @@
 
     <title>OpenPKW - Prezentacja Wyników</title>
 
-    <!-- build:css css/style.css-->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <link href="css/openpkw.css" rel="stylesheet">
 
-    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- build:css css/vendors.min.css -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- endbuild -->
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <!-- endbuild -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,7 +36,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header page-scroll">
-                <a class="navbar-brand" href="#page-top">{{ mainCtrl.name }}</a>
+                <a class="navbar-brand" href="#page-top">OpenPKW</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -176,28 +176,22 @@
         </a>
     </div>
 
-    <!-- build:js(.) js/vendors.min.js -->
+    <!-- build:js js/vendors.min.js -->
+    <script src="../../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../../bower_components/angular/angular.js"></script>
+    <script src="../../bower_components/angular-route/angular-route.js"></script>
+    <script src="../../bower_components/classie/classie.js"></script>
+    <script src="../../bower_components/AnimatedHeader/js/cbpAnimatedHeader.min.js"></script>
+    <script src="../../bower_components/jquery.easing/js/jquery.easing.js"></script>
+    <script src="../../bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="../../bower_components/raphael/raphael.js"></script>
+    <script src="../../bower_components/mocha/mocha.js"></script>
+    <script src="../../bower_components/morris.js/morris.js"></script>
+    <!-- endbuild -->
 
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/classie/classie.js"></script>
-    <script src="bower_components/AnimatedHeader/js/cbpAnimatedHeader.min.js"></script>
-    <script src="bower_components/jquery.easing/js/jquery.easing.js"></script>
-    <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
-    <script src="bower_components/raphael/raphael.js"></script>
-    <script src="bower_components/mocha/mocha.js"></script>
-    <script src="bower_components/morris.js/morris.js"></script>
-    <!-- endbower -->
     <script src="js/openpkw.js"></script>
 
-    <!-- endbuild -->
-
-    <!-- build:js js/myapp.js -->
-    <!-- endbuild -->
-
-    <script>
+        <script>
 
         $(function () {
 

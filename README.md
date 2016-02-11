@@ -4,6 +4,7 @@ Celem komponentu jest prezentacja danych przechowywanych przez OpenPKW Weryfikat
  
 ![OpenPKW Weryfikator Components](https://raw.githubusercontent.com/openpkw/openpkw-devops/master/OpenPKW%20Weryfikator%20Components.png)
 
+## Najważniejsze linki
 | Element  | Link  |
 | ------------- | ------------- |
 | Lista zadań | https://trello.com/b/eX0kOIwp/openpkw-java|
@@ -13,3 +14,20 @@ Celem komponentu jest prezentacja danych przechowywanych przez OpenPKW Weryfikat
 | Środowisko UAT | (jeszcze nie ma) |
 | Środowisko STAGE | (jeszcze nie ma) |
 | Środowisko PROD | (jeszcze nie ma) |
+
+## Technologia
+
+- AngularJS
+- npm
+- grunt
+- bower
+
+## Jak zbudować projekt?
+
+```npm install```
+
+```npm run build```
+
+## Jak uruchomić aplikację?
+
+```npm run server-dev```

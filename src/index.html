@@ -17,6 +17,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bower:js -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/chartist/dist/chartist.min.css" rel="stylesheet" type="text/css">
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -66,7 +67,25 @@
             </div>
         </div>
     </header>
-    <div class="col-md-16 col-md-offset-0">
+
+    <div class="col-md-16 col-md-offset-1">
+        <div class="hpanel">
+            <div class="panel-body">
+                <div class="col-md-5 col-md-offset-1">
+                    <div general-results-chart></div>
+                    <p>Wykres Prezentujący wyniki wyborcze w Skali Kraju</p>
+                </div>
+                <div class="col-md-2 col-md-offset-1">
+                    <div protocol-count-chart></div>
+                    <p>Ilość otrzymanych protokołów wyborczych dla Całego Kraju</p>
+                    <div turnout-results-chart></div>
+                    <p>Frekwencja Wyborcza Zbiorcza dla Całego Kraju</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-16 col-md-offset-2">
         <div class="hpanel">
             <div class="panel-body">
                 <div class="col-md-4">
@@ -188,9 +207,11 @@
     <script src="../bower_components/AnimatedHeader/js/cbpAnimatedHeader.min.js"></script>
     <script src="../bower_components/jquery.easing/js/jquery.easing.js"></script>
     <script src="../bower_components/datatables/media/js/jquery.dataTables.js"></script>
-    <script src="../bower_components/raphael/raphael.js"></script>
-    <script src="../bower_components/mocha/mocha.js"></script>
-    <script src="../bower_components/morris.js/morris.js"></script>
+    <!--<script src="../bower_components/raphael/raphael.js"></script>-->
+    <script src="../bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="../bower_components/angular-chartist.js/dist/angular-chartist.min.js"></script>
+    <!--<script src="../bower_components/mocha/mocha.js"></script>-->
+    <!--&lt;!&ndash;<script src="../bower_components/morris.js/morris.js"></script>&ndash;&gt;-->
     <!-- endbower -->
     <!-- endbuild -->
 

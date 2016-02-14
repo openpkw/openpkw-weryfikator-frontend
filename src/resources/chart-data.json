@@ -1,0 +1,28 @@
+{
+  "votersVoteNumber": 5000000,
+  "voteCommittees": [
+    {
+      "number": 1,
+      "name": "Number One",
+      "votes": 500000
+    },
+    {
+      "number": 2,
+      "name": "Magic Duo",
+      "votes": 2000000
+    },
+    {
+      "number": 3,
+      "name": "Wonderful Trio",
+      "votes": 1000000
+    },
+    {
+      "number": 4,
+      "name": "Final Four",
+      "votes": 1500000
+    }
+  ],
+  "protocolNumber": 6000000,
+  "protocolAllNumber": 8000000,
+  "allVotersNumber": 5500000
+}

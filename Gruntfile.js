@@ -280,7 +280,8 @@ module.exports = function(grunt) {
                     'jquery.js': 'jquery/dist/jquery.min.js',
                     'datatables.js': 'datatables/media/js/jquery.dataTables.js',
                     'jquery.easing.js': 'jquery.easing/js/jquery.easing.js',
-                    'cbpAnimatedHeader.js': 'AnimatedHeader/js/cbpAnimatedHeader.min.js'
+                    'cbpAnimatedHeader.js': 'AnimatedHeader/js/cbpAnimatedHeader.min.js',
+                    'chartists.js': 'chartist/dist/chartist.min.js'
                 }
             },
             css: {
@@ -288,6 +289,7 @@ module.exports = function(grunt) {
                     destPrefix: '<%= config.dist %>/css'
                 },
                 files: {
+                    'chartist.min.css': 'chartist/dist/chartist.min.css'
                     //'bootstrap.min.css':'bootstrap/dist/css/bootstrap.min.css'
                 }
             }

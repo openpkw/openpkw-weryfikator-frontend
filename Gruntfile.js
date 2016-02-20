@@ -275,13 +275,16 @@ module.exports = function(grunt) {
                     // Keys are destinations (prefixed with `options.destPrefix`)
                     // Values are sources (prefixed with `options.srcPrefix`); One source per destination
                     // e.g. 'bower_components/chai/lib/chai.js' will be copied to 'test/js/libs/chai.js'
+                    'jquery.js': 'jquery/dist/jquery.min.js',
                     'angular.js': 'angular/angular.min.js',
                     'angular.route.js': 'angular-route/angular-route.min.js',
-                    'jquery.js': 'jquery/dist/jquery.min.js',
-                    'datatables.js': 'datatables/media/js/jquery.dataTables.js',
-                    'jquery.easing.js': 'jquery.easing/js/jquery.easing.js',
+                    'classie.js': 'classie/classie.js',
                     'cbpAnimatedHeader.js': 'AnimatedHeader/js/cbpAnimatedHeader.min.js',
-                    'chartists.js': 'chartist/dist/chartist.min.js'
+                    'jquery.easing.js': 'jquery.easing/js/jquery.easing.js',
+                    'datatables.js': 'datatables/media/js/jquery.dataTables.js',
+                    'chartists.js': 'chartist/dist/chartist.js',
+                    'angular-datatables.js': 'angular-datatables/dist/angular-datatables.js',
+                    'angular-datatables.bootstrap.js': 'angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js'
                 }
             },
             css: {

@@ -4,7 +4,7 @@ import ElectionMapDirective from './election-map.directive';
 var moduleName = 'app.mapModule';
 
 angular.module(moduleName, [])
-    .factory('ElectionMapService', ElectionMapService.factory);
+    .factory('electionMapService', ElectionMapService.factory);
 
 angular.module(moduleName)
     .directive('electionMap', ElectionMapDirective.directiveFactory);

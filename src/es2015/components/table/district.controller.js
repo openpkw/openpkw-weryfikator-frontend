@@ -1,5 +1,4 @@
-export default function districtCtrl(DTOptionsBuilder, DTColumnBuilder) {
-    'ngInject';
+function districtCtrl(DTOptionsBuilder, DTColumnBuilder) {
     var vm = this;
     vm.dtOptions = DTOptionsBuilder.fromSource('data.json').withBootstrap()
         .withPaginationType('full_numbers')
@@ -33,3 +32,7 @@ export default function districtCtrl(DTOptionsBuilder, DTColumnBuilder) {
         DTColumnBuilder.newColumn('peripherals').withTitle('Ilość otrzymanych protokołów %')
     ];
 }
+
+districtCtrl.$inject = ['DTOptionsBuilder', 'DTColumnBuilder'];
+
+export default districtCtrl;

@@ -1,4 +1,4 @@
-export default function committeesCtrl(DTOptionsBuilder, DTColumnBuilder) {
+function committeesCtrl(DTOptionsBuilder, DTColumnBuilder) {
     'ngInject';
     var vm = this;
     vm.dtOptions = DTOptionsBuilder.fromSource('data.json').withBootstrap()
@@ -33,3 +33,7 @@ export default function committeesCtrl(DTOptionsBuilder, DTColumnBuilder) {
         DTColumnBuilder.newColumn('percents').withTitle('Procent')
     ];
 }
+
+committeesCtrl.$inject = ['DTOptionsBuilder', 'DTColumnBuilder'];
+
+export default committeesCtrl;

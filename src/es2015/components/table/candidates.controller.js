@@ -1,4 +1,4 @@
-export default function candidatesCtrl(DTOptionsBuilder, DTColumnBuilder) {
+function candidatesCtrl(DTOptionsBuilder, DTColumnBuilder) {
     'ngInject';
     var vm = this;
     vm.dtOptions = DTOptionsBuilder.fromSource('data.json').withBootstrap()
@@ -35,3 +35,7 @@ export default function candidatesCtrl(DTOptionsBuilder, DTColumnBuilder) {
         DTColumnBuilder.newColumn('getMandate').withTitle('Dostał Mandat')
     ];
 }
+
+candidatesCtrl.$inject = ['DTOptionsBuilder', 'DTColumnBuilder'];
+
+export default candidatesCtrl;

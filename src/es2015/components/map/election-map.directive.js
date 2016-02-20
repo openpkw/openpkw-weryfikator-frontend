@@ -1,10 +1,9 @@
-import ElectionMapService from './election-map.service';
-
 const MAPPER = new WeakMap();
 
 class ElectionMapDirective {
-    constructor(ElectionMapService) {
-        MAPPER.set(this, ElectionMapService.factory());
+
+    constructor(electionMapService) {
+        MAPPER.set(this, electionMapService);
 
         this.restrict = 'AE';
         this.scope = {
@@ -13,8 +12,8 @@ class ElectionMapDirective {
         this.templateUrl = "img/Sejm_RP_okregi.svg";
     }
 
-    static directiveFactory() {
-        ElectionMapDirective.instance = new ElectionMapDirective(ElectionMapService);
+    static directiveFactory(electionMapService) {
+        ElectionMapDirective.instance = new ElectionMapDirective(electionMapService);
         return ElectionMapDirective.instance;
     }
 
@@ -41,6 +40,6 @@ class ElectionMapDirective {
     }
 }
 
-ElectionMapDirective.directiveFactory.$inject = ['ElectionMapService'];
+ElectionMapDirective.directiveFactory.$inject = ['electionMapService'];
 
 export default ElectionMapDirective;

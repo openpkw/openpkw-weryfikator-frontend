@@ -1,5 +1,3 @@
-//import ChartDataService from './chart-data.service';
-
 const SERVICE = new WeakMap();
 
 class GeneralResultsDirective {

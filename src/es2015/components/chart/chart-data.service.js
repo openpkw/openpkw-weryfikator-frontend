@@ -9,7 +9,7 @@ class ChartDataService {
 
     loadPollingData() {
         var deferred = Q.get(ChartDataService.instance).defer();
-        ChartDataService.instance.data = HTTP.get(ChartDataService.instance).get('/resources/chart-data.json').then((data) => {
+        ChartDataService.instance.data = HTTP.get(ChartDataService.instance).get('resources/chart-data.json').then((data) => {
             deferred.resolve(data);
             return deferred.promise;
         });

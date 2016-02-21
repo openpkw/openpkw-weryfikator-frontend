@@ -4,6 +4,28 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+.chart-description {
+    font-size: 1em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.ct-label {
+    font-size: 1.1rem;
+}
+
+.ct-series-a .ct-area, .ct-series-a .ct-slice-pie  {
+    fill: #000088;
+}
+
+.ct-chart-pie .ct-label {
+    fill: #ffffff;
+}
+
+.ct-series-b .ct-area, .ct-series-b .ct-slice-pie {
+    fill: #0000ff;
+}
+
 body {
     overflow-x: hidden;
 }

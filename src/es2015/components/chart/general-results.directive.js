@@ -18,9 +18,22 @@ class GeneralResultsDirective {
         SERVICE.get(GeneralResultsDirective.instance).getGeneralResults().then((data) => {
             var options = {
                 high: data.max,
-                low: 0
+                low: 0,
+                axisY: {
+                    offset: 80,
+                    labelInterpolationFnc: function(value) {
+                        return value.toFixed(1) + ' %'
+                    },
+                    scaleMinSpace: 15
+                }
             };
-            new Chartist.Bar('#general-results', data.chart, options);
+            new Chartist.Bar('#general-results', data.chart, options).on('draw', function(data) {
+                if(data.type === 'bar') {
+                    data.element.attr({
+                        style: 'stroke-width: 40px; stroke: #0000ff'
+                    });
+                }
+            });
         });
     }
 }

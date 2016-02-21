@@ -11,8 +11,6 @@
 
     <title>OpenPKW - Prezentacja Wyników</title>
 
-    <link href="css/openpkw.css" rel="stylesheet">
-
     <!-- build:css css/vendors.min.css -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bower:js -->
@@ -25,6 +23,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <link href="css/openpkw.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -75,13 +75,13 @@
             <div class="panel-body">
                 <div class="col-md-5 col-md-offset-1">
                     <div general-results-chart></div>
-                    <p>Wykres Prezentujący wyniki wyborcze w Skali Kraju</p>
+                    <p class="chart-description">Wykres Prezentujący wyniki wyborcze w Skali Kraju</p>
                 </div>
                 <div class="col-md-2 col-md-offset-1">
                     <div protocol-count-chart></div>
-                    <p>Ilość otrzymanych protokołów wyborczych dla Całego Kraju</p>
+                    <p class="chart-description">Liczba otrzymanych protokołów wyborczych dla Całego Kraju</p>
                     <div turnout-results-chart></div>
-                    <p>Frekwencja Wyborcza Zbiorcza dla Całego Kraju</p>
+                    <p class="chart-description">Frekwencja Wyborcza Zbiorcza dla Całego Kraju</p>
                 </div>
             </div>
         </div>
@@ -99,12 +99,12 @@
         <div ng-controller="districtCtrl as tableDistrict">
             <table datatable="" dt-options="tableDistrict.dtOptions" dt-columns="tableDistrict.dtColumns" class="row-border hover"></table>
         </div>
-        <div ng-controller="committeesCtrl as tableCommittees">
-            <table datatable="" dt-options="tableCommittees.dtOptions" dt-columns="tableCommittees.dtColumns" class="row-border hover"></table>
-        </div>
-        <div ng-controller="candidatesCtrl as tableCandidates">
-            <table datatable="" dt-options="tableCandidates.dtOptions" dt-columns="tableCandidates.dtColumns" class="row-border hover"></table>
-        </div>
+        <!--<div ng-controller="committeesCtrl as tableCommittees">-->
+            <!--<table datatable="" dt-options="tableCommittees.dtOptions" dt-columns="tableCommittees.dtColumns" class="row-border hover"></table>-->
+        <!--</div>-->
+        <!--<div ng-controller="candidatesCtrl as tableCandidates">-->
+            <!--<table datatable="" dt-options="tableCandidates.dtOptions" dt-columns="tableCandidates.dtColumns" class="row-border hover"></table>-->
+        <!--</div>-->
     </div>
 
     <div class="row"></div>

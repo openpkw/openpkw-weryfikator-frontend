@@ -1,6 +1,6 @@
 function districtCtrl(DTOptionsBuilder, DTColumnBuilder) {
     var vm = this;
-    vm.dtOptions = DTOptionsBuilder.fromSource('data.json').withBootstrap()
+    vm.dtOptions = DTOptionsBuilder.fromSource('resources/district-data.json').withBootstrap()
         .withPaginationType('full_numbers')
         .withLanguage({
             "sEmptyTable":     "Brak danych w tabeli",

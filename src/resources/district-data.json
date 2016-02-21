@@ -1,0 +1,74 @@
+[
+  {
+    "number": 1,
+    "name": "First",
+    "cities": ["Warsaw"],
+    "peripherals": 30
+  },
+  {
+    "number": 2,
+    "name": "Second",
+    "cities": ["Poznań"],
+    "peripherals": 10
+  },
+  {
+    "number": 3,
+    "name": "Third",
+    "cities": ["Gdańsk"],
+    "peripherals": 22
+  },
+  {
+    "number": 1,
+    "name": "First",
+    "cities": ["Warsaw"],
+    "peripherals": 30
+  },
+  {
+    "number": 2,
+    "name": "Second",
+    "cities": ["Poznań"],
+    "peripherals": 10
+  },
+  {
+    "number": 3,
+    "name": "Third",
+    "cities": ["Gdańsk"],
+    "peripherals": 22
+  },
+  {
+    "number": 1,
+    "name": "First",
+    "cities": ["Warsaw"],
+    "peripherals": 30
+  },
+  {
+    "number": 2,
+    "name": "Second",
+    "cities": ["Poznań"],
+    "peripherals": 10
+  },
+  {
+    "number": 3,
+    "name": "Third",
+    "cities": ["Gdańsk"],
+    "peripherals": 22
+  },
+  {
+    "number": 1,
+    "name": "First",
+    "cities": ["Warsaw"],
+    "peripherals": 30
+  },
+  {
+    "number": 2,
+    "name": "Second",
+    "cities": ["Poznań"],
+    "peripherals": 10
+  },
+  {
+    "number": 3,
+    "name": "Third",
+    "cities": ["Gdańsk"],
+    "peripherals": 22
+  }
+]

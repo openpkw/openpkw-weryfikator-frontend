@@ -9,7 +9,7 @@ class ElectionMapDirective {
         this.scope = {
             selectedDistrict: "="
         };
-        this.templateUrl = "img/Sejm_RP_okregi.svg";
+        this.templateUrl = "images/Sejm_RP_okregi.svg";
     }
 
     static directiveFactory(electionMapService) {

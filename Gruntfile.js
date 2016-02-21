@@ -133,7 +133,7 @@ module.exports = function(grunt) {
                     '<%= config.gen %>/**/components/**/*.html',
                     '<%= config.gen %>/css/**/*.css',
                     '.tmp/css/**/*.css',
-                    '<%= config.gen %>/img/**/*.{png,jpg,jpeg,gif,webp,svg}'
+                    '<%= config.gen %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
         },
@@ -157,7 +157,8 @@ module.exports = function(grunt) {
             dev: {
                 files: [
                     {expand: true, src: ['<%= config.app %>/css/*.css'], flatten: true, dest: '<%= config.gen %>/css', filter: 'isFile'},
-                    {expand: true, src: ['<%= config.app %>/img/*.*'], flatten: true, dest: '<%= config.gen %>/img', filter: 'isFile'},
+                    {expand: true, src: ['<%= config.app %>/images/*.*'], flatten: true, dest: '<%= config.gen %>/images', filter: 'isFile'},
+                    {expand: true, src: ['<%= config.app %>/js/*.*'], flatten: true, dest: '<%= config.gen %>/js', filter: 'isFile'},
                     {expand: true, src: ['bower_components/font-awesome/fonts/*.*'], flatten: true, dest: '<%= config.gen %>/fonts', filter: 'isFile'},
                     {expand: true, src: ['<%= config.app %>/fonts/*.*'], flatten: true, dest: '<%= config.gen %>/fonts', filter: 'isFile'},
                     {
@@ -173,7 +174,8 @@ module.exports = function(grunt) {
             dist: {
                 files: [
                     //{expand: true, src: ['<%= config.app %>/styles/css/*.css'], flatten: true, dest: '<%= config.dist %>/css', filter: 'isFile'},
-                    {expand: true, src: ['<%= config.app %>/img/*.*'], flatten: true, dest: '<%= config.dist %>/img', filter: 'isFile'},
+                    {expand: true, src: ['<%= config.app %>/images/*.*'], flatten: true, dest: '<%= config.dist %>/images', filter: 'isFile'},
+                    {expand: true, src: ['bower_components/datatables/media/images/*.*'], flatten: true, dest: '<%= config.dist %>/images', filter: 'isFile'},
                     {expand: true, src: ['bower_components/font-awesome/fonts/*.*'], flatten: true, dest: '<%= config.dist %>/fonts', filter: 'isFile'},
                     {expand: true, src: ['<%= config.app %>/fonts/*.*'], flatten: true, dest: '<%= config.dist %>/fonts', filter: 'isFile'},
                     {

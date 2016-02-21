@@ -158,6 +158,8 @@ module.exports = function(grunt) {
                 files: [
                     {expand: true, src: ['<%= config.app %>/css/*.css'], flatten: true, dest: '<%= config.gen %>/css', filter: 'isFile'},
                     {expand: true, src: ['<%= config.app %>/img/*.*'], flatten: true, dest: '<%= config.gen %>/img', filter: 'isFile'},
+                    {expand: true, src: ['bower_components/font-awesome/fonts/*.*'], flatten: true, dest: '<%= config.gen %>/fonts', filter: 'isFile'},
+                    {expand: true, src: ['<%= config.app %>/fonts/*.*'], flatten: true, dest: '<%= config.gen %>/fonts', filter: 'isFile'},
                     {
                     // includes files within path
                     expand: true,
@@ -173,6 +175,7 @@ module.exports = function(grunt) {
                     //{expand: true, src: ['<%= config.app %>/styles/css/*.css'], flatten: true, dest: '<%= config.dist %>/css', filter: 'isFile'},
                     {expand: true, src: ['<%= config.app %>/img/*.*'], flatten: true, dest: '<%= config.dist %>/img', filter: 'isFile'},
                     {expand: true, src: ['bower_components/font-awesome/fonts/*.*'], flatten: true, dest: '<%= config.dist %>/fonts', filter: 'isFile'},
+                    {expand: true, src: ['<%= config.app %>/fonts/*.*'], flatten: true, dest: '<%= config.dist %>/fonts', filter: 'isFile'},
                     {
                     // includes files within path
                     expand: true,

@@ -376,8 +376,8 @@ module.exports = function(grunt) {
 
         scp: {
             options: {
-                host: config.backendProxy,
-                port: 22,
+                host: 'rumcajs.open-pkw.pl',
+                port: 1023,
                 username: 'openpkw-cd',
                 privateKey: scpPrivateKey,
                 tryKeyboard: true
@@ -408,7 +408,7 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['karma:unit']);
 
     if (scpPrivateKey !== false) {
-        grunt.registerTask('deploy', ['scp']);
+        grunt.registerTask('deploy-test', ['scp']);
     }
 
 };

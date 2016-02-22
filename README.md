@@ -22,12 +22,18 @@ Celem komponentu jest prezentacja danych przechowywanych przez OpenPKW Weryfikat
 - grunt
 - bower
 
-## Jak zbudować projekt?
+## Instrukcja instalacji i uruchamiania
 
-```npm install```
-
-```npm run build```
-
-## Jak uruchomić aplikację?
-
-```npm run server-dev```
+- Ściągamy i instalujemy [git'a](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- Ściągamy i instalujemy [nodejs](https://nodejs.org/download/)
+- Ściągamy i instalujemy g++
+- W katalogu gdzie zainstalowany jest node uruchamiamy:<br/>
+```npm install -g npm ```<br/>
+```npm install -g grunt-cli```<br/>
+```npm install -g bower```<br/>
+- Ściągamy projekt kalkulatora ```git clone https://github.com/openpkw/openpkw-weryfikator-frontend.git```
+- W katalogu */src/frontend* możemy uruchomić następujące taski:<br/>
+ ```npm install``` - instaluje wszystkie zależności wymagane w projekcie<br/>
+ ```npm run build``` - buduje wersję produkcyjną aplikacji<br/>
+ ```npm run server-prod``` - startuje serwer produkcyjny [http://localhost:8089](http://localhost:8089), może być również używany przez osoby chcące tylko pooglądać aplikację<br/>
+ ```npm run server-dev``` - serwer deweloperski [http://localhost:9000](http://localhost:9000), obsługuje livereload (przeglądarka sama się odświeża gdy edytujemy i zapisujemy pliki), uruchamia się szybciej niż. Przed uruchomieniem nie trzeba budować aplikacji ponieważ serwer działa na plikach z katalogu ```src``<br/>

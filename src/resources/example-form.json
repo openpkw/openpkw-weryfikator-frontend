@@ -1,0 +1,83 @@
+{
+  "komisja": {
+    "kodTerytorialnyGminy": "180801",
+    "numerObwoduGlosowania": "5",
+    "siedzibaObwodowejKomisjiWyborczej": "Gimnazjum Miejskie im. Władysława Jagiełły, Leżajsk ul. Skłodowskiej 8, 37-300 Leżajsk",
+    "gminaDzielnica": "m. Leżajsk",
+    "powiat": "leżajski",
+    "wojewodztwo": "podkarpackie"
+  },
+  "akcjaWyborcza": {
+    "dataGlosowania": "24 maja 2015 r.",
+    "dzienMiesiacGlosowania": "24 maja",
+    "rokGlosowania": "15",
+    "godzinaGlosowaniaOd": "9:00",
+    "godzinaGlosowaniaDo": "21:00"
+  },
+  "rozliczenieKart": {
+    "pole1": "1000",
+    "pole2": "800",
+    "pole3": "300",
+    "pole4": "500",
+    "pole5": "0",
+    "pole6": "0",
+    "pole7": "0",
+    "pole8": "0",
+    "pole8a": "0",
+    "pole8b": "0",
+    "pole8c": "0",
+    "pole8d": "0",
+    "pole8e": "0"
+  },
+  "wynikiGlosowania": {
+    "pole9": "500",
+    "pole9a": "0",
+    "pole10": "0",
+    "pole11": "500",
+    "pole12": "0",
+    "pole13": "500",
+    "pole14": [
+      {
+        "imionaINazwisko": "Andrzej Sebastian Duda",
+        "sumaGlosowWaznych": "250"
+      },
+      {
+        "imionaINazwisko": "Bronisław Maria Komorowski",
+        "sumaGlosowWaznych": "250"
+      }
+    ],
+    "sumaGlosowWaznych": "500"
+  },
+  "uwagiIAdnotacje": {
+    "pole15": "Brak uwag.",
+    "pole16": "Brak uwag.",
+    "pole17": "Brak uwag.",
+    "pole18": "Brak zarządzeń.",
+    "pole19": "Brak zarzutów.",
+    "pole20": "Brak zarzutów.",
+    "pole21": "Brak uwag."
+  },
+  "czlonkowieKomisji": [
+    {
+      "imie1": "Euzebiusz",
+      "imie2": "Stanisław",
+      "nazwisko": "Szybki",
+      "funkcja": "Przewodniczący",
+      "obecnosc": "true"
+    },
+    {
+      "imie1": "Kamil",
+      "imie2": "Tadeusz",
+      "nazwisko": "Słowikowski",
+      "funkcja": "Zastępca Przewodniczącego",
+      "obecnosc": "false"
+    },
+    {
+      "imie1": "Michał",
+      "imie2": "Henryk",
+      "nazwisko": "Kania",
+      "funkcja": "Członek",
+      "obecnosc": "false"
+    }
+  ]
+}

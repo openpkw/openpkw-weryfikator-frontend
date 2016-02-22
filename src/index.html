@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html ng-app="opkwApp" lang="pl">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="OpenPKW">
+
+    <title>OpenPKW - Prezentacja Wyników</title>
+
+    <!-- build:css css/vendors.min.css -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- bower:js -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/chartist/dist/chartist.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/datatables/media/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <link href="css/openpkw.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body ng-controller="mainController as mainCtrl" id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <a class="navbar-brand" href="#page-top">OpenPKW</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+ <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="images/baner_openpkw.png" alt="">
+                    <div class="intro-text">
+                        <hr class="star-light">
+                        <span class="skills">Wybory ???</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="col-md-16 col-md-offset-1">
+        <div class="hpanel">
+            <div class="panel-body">
+                <div class="col-md-5 col-md-offset-1">
+                    <div general-results-chart></div>
+                    <p class="chart-description">Wykres Prezentujący wyniki wyborcze w Skali Kraju</p>
+                </div>
+                <div class="col-md-2 col-md-offset-1">
+                    <div protocol-count-chart></div>
+                    <p class="chart-description">Liczba otrzymanych protokołów wyborczych dla Całego Kraju</p>
+                    <div turnout-results-chart></div>
+                    <p class="chart-description">Frekwencja Wyborcza Zbiorcza dla Całego Kraju</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-16 col-md-offset-2">
+        <div class="hpanel">
+            <div class="panel-body">
+                <div class="col-md-12 col-md-offset-1" data-election-map election-type="PARLIAMENT" scale="60%" selected-district="mainCtrl.district"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-10 col-md-offset-1">
+        <div ng-controller="districtCtrl as tableDistrict">
+            <table datatable="" dt-options="tableDistrict.dtOptions" dt-columns="tableDistrict.dtColumns" class="row-border hover"></table>
+        </div>
+        <!--<div ng-controller="committeesCtrl as tableCommittees">-->
+            <!--<table datatable="" dt-options="tableCommittees.dtOptions" dt-columns="tableCommittees.dtColumns" class="row-border hover"></table>-->
+        <!--</div>-->
+        <!--<div ng-controller="candidatesCtrl as tableCandidates">-->
+            <!--<table datatable="" dt-options="tableCandidates.dtOptions" dt-columns="tableCandidates.dtColumns" class="row-border hover"></table>-->
+        <!--</div>-->
+    </div>
+
+    <div class="row"></div>
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Social</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>O Nas</h3>
+                        <p>Projekt OpenPKW - bo liczy się inicjatywa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">Copyright &copy; OpenPKW 2016</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- build:js js/vendors.min.js -->
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/jquery.easing/js/jquery.easing.js"></script>
+    <script src="../bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="../bower_components/chartist/dist/chartist.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-chartist.js/dist/angular-chartist.js"></script>
+    <script src="../bower_components/angular-datatables/dist/angular-datatables.js"></script>
+    <script src="../bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
+    <!-- endbower -->
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+    <!-- endbuild -->
+
+    <script src="js/openpkw.js"></script>
+
+</body>
+
+</html>

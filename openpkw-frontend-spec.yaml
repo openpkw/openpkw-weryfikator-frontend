@@ -167,6 +167,9 @@ definitions:
           type: string
       name:
         type: string
+      protocolNumber:
+        type: integer
+        format: int64
       peripherals:
         type: array
         items:

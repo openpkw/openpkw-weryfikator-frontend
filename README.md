@@ -10,7 +10,7 @@ Celem komponentu jest prezentacja danych przechowywanych przez OpenPKW Weryfikat
 | Lista zadań | https://trello.com/b/eX0kOIwp/openpkw-java|
 | Repozytorium kodu źródłowego  |  https://github.com/openpkw/openpkw-weryfikator-frontend|
 | Serwer Continuous Delivery | http://cypisek.open-pkw.pl:8080/view/OpenPKW%20Weryfikator%20Frontend/ |
-| Środowisko TEST | (jeszcze nie ma) |
+| Środowisko TEST | http://rumcajs.open-pkw.pl:81 |
 | Środowisko UAT | (jeszcze nie ma) |
 | Środowisko STAGE | (jeszcze nie ma) |
 | Środowisko PROD | (jeszcze nie ma) |

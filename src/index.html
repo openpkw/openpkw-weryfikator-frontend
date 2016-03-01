@@ -56,7 +56,7 @@
         <!-- /.container-fluid -->
     </nav>
 
- <header>
+    <header>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -71,20 +71,35 @@
     </header>
 
     <div class="col-md-16 col-md-offset-1">
-        <div class="hpanel">
-            <div class="panel-body">
-                <div class="col-md-5 col-md-offset-1">
-                    <div general-results-chart></div>
-                    <p class="chart-description">Wykres Prezentujący wyniki wyborcze w Skali Kraju</p>
+        <div class="col-md-6 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Wykres Prezentujący wyniki wyborcze w Skali Kraju</h3>
                 </div>
-                <div class="col-md-2 col-md-offset-1">
-                    <div protocol-count-chart></div>
-                    <p class="chart-description">Liczba otrzymanych protokołów wyborczych dla Całego Kraju</p>
-                    <div turnout-results-chart></div>
-                    <p class="chart-description">Frekwencja Wyborcza Zbiorcza dla Całego Kraju</p>
+                <div class="panel-body">
+                    <div general-results-chart></div>
                 </div>
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Liczba otrzymanych protokołów wyborczych dla Całego Kraju</h3>
+                </div>
+                <div class="panel-body">
+                    <div protocol-count-chart></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Frekwencja Wyborcza Zbiorcza dla Całego Kraju</h3>
+                </div>
+                <div class="panel-body">
+                    <div turnout-results-chart></div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
     <div class="col-md-16 col-md-offset-2">
@@ -158,7 +173,6 @@
     <script src="../bower_components/datatables/media/js/jquery.dataTables.js"></script>
     <script src="../bower_components/chartist/dist/chartist.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
-    <script src="../bower_components/angular-chartist.js/dist/angular-chartist.js"></script>
     <script src="../bower_components/angular-datatables/dist/angular-datatables.js"></script>
     <script src="../bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
     <!-- endbower -->

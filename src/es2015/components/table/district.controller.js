@@ -1,6 +1,8 @@
-function districtCtrl(DTOptionsBuilder, DTColumnBuilder) {
+function districtCtrl(districtDataService, DTOptionsBuilder, DTColumnBuilder) {
     var vm = this;
-    vm.dtOptions = DTOptionsBuilder.fromSource('resources/district-data.json').withBootstrap()
+    vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
+        return districtDataService.getDistrictDataList();
+    }).withBootstrap()
         .withPaginationType('full_numbers')
         .withLanguage({
             "sEmptyTable":     "Brak danych w tabeli",
@@ -33,6 +35,6 @@ function districtCtrl(DTOptionsBuilder, DTColumnBuilder) {
     ];
 }
 
-districtCtrl.$inject = ['DTOptionsBuilder', 'DTColumnBuilder'];
+districtCtrl.$inject = ['districtDataService', 'DTOptionsBuilder', 'DTColumnBuilder'];
 
 export default districtCtrl;

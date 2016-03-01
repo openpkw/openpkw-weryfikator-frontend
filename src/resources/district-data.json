@@ -1,74 +1,91 @@
-[
-  {
-    "number": 1,
-    "name": "First",
-    "cities": ["Warsaw"],
-    "peripherals": 30
-  },
-  {
-    "number": 2,
-    "name": "Second",
-    "cities": ["Poznań"],
-    "peripherals": 10
-  },
-  {
-    "number": 3,
-    "name": "Third",
-    "cities": ["Gdańsk"],
-    "peripherals": 22
-  },
-  {
-    "number": 1,
-    "name": "First",
-    "cities": ["Warsaw"],
-    "peripherals": 30
-  },
-  {
-    "number": 2,
-    "name": "Second",
-    "cities": ["Poznań"],
-    "peripherals": 10
-  },
-  {
-    "number": 3,
-    "name": "Third",
-    "cities": ["Gdańsk"],
-    "peripherals": 22
-  },
-  {
-    "number": 1,
-    "name": "First",
-    "cities": ["Warsaw"],
-    "peripherals": 30
-  },
-  {
-    "number": 2,
-    "name": "Second",
-    "cities": ["Poznań"],
-    "peripherals": 10
-  },
-  {
-    "number": 3,
-    "name": "Third",
-    "cities": ["Gdańsk"],
-    "peripherals": 22
-  },
-  {
-    "number": 1,
-    "name": "First",
-    "cities": ["Warsaw"],
-    "peripherals": 30
-  },
-  {
-    "number": 2,
-    "name": "Second",
-    "cities": ["Poznań"],
-    "peripherals": 10
-  },
-  {
-    "number": 3,
-    "name": "Third",
-    "cities": ["Gdańsk"],
-    "peripherals": 22
-  }
-]
+{
+  "districts": [
+    {
+      "number": 1,
+      "cities": [
+        "Warsaw"
+      ],
+      "name": "First",
+      "protocolNumber": 3,
+      "peripherals": [
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"}
+      ]
+    },
+    {
+      "number": 2,
+      "cities": [
+        "Poznan"
+      ],
+      "name": "Second",
+      "protocolNumber": 1,
+      "peripherals": [
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"}
+      ]
+    },
+    {
+      "number": 3,
+      "cities": [
+        "Gdansk"
+      ],
+      "name": "Third",
+      "protocolNumber": 4,
+      "peripherals": [
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"}
+      ]
+    },
+    {
+      "number": 4,
+      "cities": [
+        "Gdynia", "Sopot"
+      ],
+      "name": "Forth",
+      "protocolNumber": 1,
+      "peripherals": [
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"}
+      ]
+    },
+    {
+      "number": 5,
+      "cities": [
+        "Toruń", "Bydgoszcz"
+      ],
+      "name": "Forth",
+      "protocolNumber": 4,
+      "peripherals": [
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"}
+      ]
+    },
+    {
+      "number": 6,
+      "cities": [
+        "Wrocław"
+      ],
+      "name": "Forth",
+      "protocolNumber": 2,
+      "peripherals": [
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"},
+        {"number": 0,"teritorialCode": "string","name": "string"}
+      ]
+    }
+  ]
+}

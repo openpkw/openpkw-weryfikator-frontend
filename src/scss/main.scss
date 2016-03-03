@@ -3,6 +3,18 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
+.ct-chart-bar .ct-label.ct-horizontal.ct-end {
+    display: block;
+    overflow: inherit;
+    text-overflow: clip;
+    white-space: normal;
+    transform: rotate(-90deg);
+    transform-origin: 100% 0;
+    text-align: right;
+    max-height: 1.5em;
+    min-width: 100px;
+    max-width: 100px;
+}
 
 .tooltipster-content {
     background: #2c3e50;

@@ -9,7 +9,7 @@ class ChartDataService {
 
     loadPollingData() {
         var deferred = Q.get(ChartDataService.instance).defer();
-        ChartDataService.instance.data = HTTP.get(ChartDataService.instance).get('resources/chart-data.json').then((data) => {
+        ChartDataService.instance.data = HTTP.get(ChartDataService.instance).get('http://rumcajs.open-pkw.pl:9080/openpkw/votes').then((data) => {
             deferred.resolve(data);
             return deferred.promise;
         });
@@ -19,14 +19,18 @@ class ChartDataService {
     getGeneralResults() {
         var deferred = Q.get(ChartDataService.instance).defer();
         ChartDataService.instance.data.then((data) => {
-            var votes = data.data.voteCommittees;
+            var votes = data.data.voteCommittees.sort((a, b) => {
+                if (a.votes < b.votes) return 1;
+                if (a.votes > b.votes) return -1;
+                return 0;
+            });
             var totalVotes = data.data.votersVoteNumber;
 
             var series = votes.map((item) => (item.votes / totalVotes) * 100);
 
             var result = {
                 "chart": {
-                    "labels": votes.map((item) => item.name),
+                    "labels": votes.map((item) => item.name.replace('Komitet Wyborczy', 'KW')),
                     "series": [
                         series
                     ]

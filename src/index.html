@@ -18,6 +18,7 @@
     <link href="../bower_components/chartist/dist/chartist.min.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../bower_components/datatables/media/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/tooltipster/css/tooltipster.css" rel="stylesheet" type="text/css">
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -41,7 +42,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header page-scroll">
-                <a class="navbar-brand" href="#page-top">OpenPKW</a>
+                <a class="navbar-brand" href="#page-top">Wybory _placeholder_</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -60,10 +61,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive" src="images/baner_openpkw.png" alt="">
                     <div class="intro-text">
-                        <hr class="star-light">
-                        <span class="skills">Wybory _placeholder_</span>
+                        <img class="img-responsive" src="images/baner_openpkw.png" alt="">
                     </div>
                 </div>
             </div>
@@ -102,17 +101,17 @@
     </div>
     </div>
 
-    <div class="col-md-16 col-md-offset-2">
+    <div class="col-md-16 col-md-offset-1">
         <div class="hpanel">
             <div class="panel-body">
-                <div class="col-md-12 col-md-offset-1" data-election-map election-type="PARLIAMENT" scale="60%" selected-district="mainCtrl.district"></div>
+                <div class="col-md-7 col-md-offset-2" data-election-map election-type="PARLIAMENT" scale="100%" selected-district="mainCtrl.district"></div>
             </div>
         </div>
     </div>
 
     <div class="col-md-10 col-md-offset-1">
         <div ng-controller="districtCtrl as tableDistrict">
-            <table datatable="" dt-options="tableDistrict.dtOptions" dt-columns="tableDistrict.dtColumns" class="row-border hover"></table>
+            <table datatable="" dt-options="tableDistrict.dtOptions" dt-columns="tableDistrict.dtColumns" class="row-border hover" width="100%"></table>
         </div>
         <!--<div ng-controller="committeesCtrl as tableCommittees">-->
             <!--<table datatable="" dt-options="tableCommittees.dtOptions" dt-columns="tableCommittees.dtColumns" class="row-border hover"></table>-->
@@ -166,19 +165,21 @@
     </div>
 
     <!-- build:js js/vendors.min.js -->
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/jquery.easing/js/jquery.easing.js"></script>
+    <script src="../bower_components/tooltipster/js/jquery.tooltipster.js"></script>
     <script src="../bower_components/datatables/media/js/jquery.dataTables.js"></script>
     <script src="../bower_components/chartist/dist/chartist.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
     <script src="../bower_components/angular-datatables/dist/angular-datatables.js"></script>
     <script src="../bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
-    <!-- endbower -->
-    <script src="js/classie.js"></script>
-    <script src="js/cbpAnimatedHeader.js"></script>
+    <script src="../bower_components/drmonty-datatables-responsive/js/responsive.bootstrap.js"></script>
     <!-- endbuild -->
+    <!-- endbower -->
 
     <script src="js/openpkw.js"></script>
 

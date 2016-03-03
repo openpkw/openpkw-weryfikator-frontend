@@ -9,7 +9,7 @@ class DistrictDataService {
 
     loadTableData() {
         var deferred = Q.get(DistrictDataService.instance).defer();
-        DistrictDataService.instance.data = HTTP.get(DistrictDataService.instance).get('resources/district-data.json').then((data) => {
+        DistrictDataService.instance.data = HTTP.get(DistrictDataService.instance).get('http://rumcajs.open-pkw.pl:9080/openpkw/districts').then((data) => {
             var districts = data.data.districts;
             var result = new Map();
             for (let district of districts) {
@@ -17,7 +17,7 @@ class DistrictDataService {
                     cities: district.cities,
                     number: district.number,
                     name: district.name,
-                    peripherals: Math.round(10000 * district.protocolNumber / district.peripherals.length) / 100
+                    peripherals: Math.round(10000 * district.protocolNumber / district.peripheralsNumber) / 100
                 });
             }
             deferred.resolve(result);

@@ -3,6 +3,7 @@ function districtCtrl(districtDataService, DTOptionsBuilder, DTColumnBuilder) {
     vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
         return districtDataService.getDistrictDataList();
     }).withBootstrap()
+        .withOption('responsive', true)
         .withPaginationType('full_numbers')
         .withLanguage({
             "sEmptyTable":     "Brak danych w tabeli",
@@ -31,7 +32,7 @@ function districtCtrl(districtDataService, DTOptionsBuilder, DTColumnBuilder) {
         DTColumnBuilder.newColumn('number').withTitle('Nr Okręgu'),
         DTColumnBuilder.newColumn('name').withTitle('Siedziba Komisji Okręgowej'),
         DTColumnBuilder.newColumn('cities').withTitle('Miasta'),
-        DTColumnBuilder.newColumn('peripherals').withTitle('Ilość otrzymanych protokołów %')
+        DTColumnBuilder.newColumn('peripherals').withTitle('Liczba otrzymanych protokołów %')
     ];
 }
 

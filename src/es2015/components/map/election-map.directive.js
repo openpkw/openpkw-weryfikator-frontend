@@ -33,19 +33,33 @@ class ElectionMapDirective {
             return ["rgb(",r,",",g,",",b,")"].join("");
         }
 
-        function setItemColor(id, color) {
+        function prepareItem(id, color, name, percentage) {
             elem.find('#' + id).css('fill', color);
+            if (typeof name !== 'undefined' && typeof percentage !== 'undefined') {
+                $('#' + id).tooltipster({
+                    arrow: false,
+                    functionReady: function(){
+                        var offset = $(this).offset();
+                        $(".tooltipster-base").offset(offset);
+                    },
+                    content: $('<h5>' + name + '</h5><small>Otrzymanych protokołów: <strong>' + percentage + '%</strong></small>')
+                });
+            }
         }
 
-        function setItemsColor(electionType) {
+        function prepareItems(electionType, shouldSetTooltip) {
             var elections = MAPPER.get(ElectionMapDirective.instance).getDistrictIdsForElections(electionType);
             var districts = DISTRICT_SERVICE.get(ElectionMapDirective.instance).getDistrictDataMap().then(function (data) {
                 for (let [key, value] of elections) {
                     if (data.has(value)) {
                         var shade = parseInt(255 - 200 * (data.get(value).peripherals / 100));
-                        setItemColor(key, rgb(0,0,shade));
+                        if (shouldSetTooltip) {
+                            prepareItem(key, rgb(0,0,shade), data.get(value).name, data.get(value).peripherals);
+                        } else {
+                            prepareItem(key, rgb(0,0,shade));
+                        }
                     } else {
-                        setItemColor(key, '#aaaaff');
+                        prepareItem(key, '#aaaaff');
                     }
                 }
             });
@@ -53,9 +67,9 @@ class ElectionMapDirective {
 
         return function(scope, elem, attrs) {
             scaleImage(attrs.scale);
-            setItemsColor(attrs.electionType);
+            prepareItems(attrs.electionType, true);
             elem.find('#layer3').click(function (event) {
-                setItemsColor(attrs.electionType);
+                prepareItems(attrs.electionType, false);
                 scope.$apply(function() {
                     scope.selectedDistrict.id = MAPPER.get(ElectionMapDirective.instance).getDistrictIdForElections(event.target.id, attrs.electionType);
                 });

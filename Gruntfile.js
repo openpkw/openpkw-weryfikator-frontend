@@ -375,14 +375,29 @@ module.exports = function(grunt) {
         },
 
         scp: {
-            options: {
-                host: 'rumcajs.open-pkw.pl',
-                port: 1023,
-                username: 'openpkw-cd',
-                privateKey: scpPrivateKey,
-                tryKeyboard: true
+            test: {
+                options: {
+                    host: 'rumcajs.open-pkw.pl',
+                    port: 1023,
+                    username: 'openpkw-cd',
+                    privateKey: scpPrivateKey,
+                    tryKeyboard: true
+                },
+                files: [{
+                    cwd: './dist',
+                    src: '**/*',
+                    filter: 'isFile',
+                    dest: '/var/www/html/openpkw-weryfikator-frontend'
+                }]
             },
-            dist: {
+            uat: {
+                options: {
+                    host: 'dobromir.openpkw.pl',
+                    port: 22,
+                    username: 'openpkw-cd',
+                    privateKey: scpPrivateKey,
+                    tryKeyboard: true
+                },
                 files: [{
                     cwd: './dist',
                     src: '**/*',
@@ -408,7 +423,7 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['karma:unit']);
 
     if (scpPrivateKey !== false) {
-        grunt.registerTask('deploy-test', ['scp']);
+        grunt.registerTask('deploy-test', ['scp:test']);
+        grunt.registerTask('deploy-uat', ['scp:uat']);
     }
-
 };

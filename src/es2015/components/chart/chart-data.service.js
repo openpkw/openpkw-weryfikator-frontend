@@ -9,7 +9,7 @@ class ChartDataService {
 
     loadPollingData() {
         var deferred = Q.get(ChartDataService.instance).defer();
-        ChartDataService.instance.data = HTTP.get(ChartDataService.instance).get('http://rumcajs.open-pkw.pl:9080/openpkw/votes').then((data) => {
+        ChartDataService.instance.data = HTTP.get(ChartDataService.instance).get('/api/openpkw/votes').then((data) => {
             deferred.resolve(data);
             return deferred.promise;
         });

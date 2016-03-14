@@ -1,11 +1,15 @@
 const MAPPER = new WeakMap();
 const DISTRICT_SERVICE = new WeakMap();
+const LOCATION = new WeakMap();
+const ANCHOR_SCROLL = new WeakMap();
 
 class ElectionMapDirective {
 
-    constructor(electionMapService, districtDataService) {
+    constructor(electionMapService, districtDataService, $location, $anchorScroll) {
         MAPPER.set(this, electionMapService);
         DISTRICT_SERVICE.set(this, districtDataService);
+        LOCATION.set(this, $location);
+        ANCHOR_SCROLL.set(this, $anchorScroll);
 
         this.restrict = 'AE';
         this.scope = {
@@ -14,8 +18,8 @@ class ElectionMapDirective {
         this.templateUrl = "images/Sejm_RP_okregi.svg";
     }
 
-    static directiveFactory(electionMapService, districtDataService) {
-        ElectionMapDirective.instance = new ElectionMapDirective(electionMapService, districtDataService);
+    static directiveFactory(electionMapService, districtDataService, $location, $anchorScroll) {
+        ElectionMapDirective.instance = new ElectionMapDirective(electionMapService, districtDataService, $location, $anchorScroll);
         return ElectionMapDirective.instance;
     }
 
@@ -72,13 +76,20 @@ class ElectionMapDirective {
                 prepareItems(attrs.electionType, false);
                 scope.$apply(function() {
                     scope.selectedDistrict.id = MAPPER.get(ElectionMapDirective.instance).getDistrictIdForElections(event.target.id, attrs.electionType);
+                    DISTRICT_SERVICE.get(ElectionMapDirective.instance).getDistrictDataMap().then(
+                        data => {
+                            scope.selectedDistrict.name = data.get(scope.selectedDistrict.id).name;
+                        }
+                    )
                 });
                 elem.find('#' + event.target.id).css('fill', '#888888');
+                LOCATION.get(ElectionMapDirective.instance).hash("second-page");
+                ANCHOR_SCROLL.get(ElectionMapDirective.instance)();
             });
         }
     }
 }
 
-ElectionMapDirective.directiveFactory.$inject = ['electionMapService', 'districtDataService'];
+ElectionMapDirective.directiveFactory.$inject = ['electionMapService', 'districtDataService', '$location', '$anchorScroll'];
 
 export default ElectionMapDirective;

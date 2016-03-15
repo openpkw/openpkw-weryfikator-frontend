@@ -154,11 +154,10 @@ hr.star-primary:after {
 header {
     text-align: center;
     color: #fff;
-    background: #00438a;
 }
 
 header .container {
-    padding-top: 100px;
+    padding-top: 15px;
     padding-bottom: 50px;
 }
 
@@ -182,7 +181,7 @@ header .intro-text .skills {
 
 @media(min-width:768px) {
     header .container {
-        padding-top: 150px;
+        padding-top: 15px;
         padding-bottom: 20px;
     }
 
@@ -243,7 +242,7 @@ header .intro-text .skills {
 }
 
 section {
-    padding: 100px 0;
+    padding: 25px 0;
 }
 
 section h2 {
@@ -388,7 +387,7 @@ section.success a.active {
     transition: top .3s ease,opacity .3s ease;
 }
 
-.floating-label-form-group::not(:first-child) {
+.floating-label-form-group:not(:first-child) {
     padding-left: 14px;
     border-left: 1px solid #eee;
 }

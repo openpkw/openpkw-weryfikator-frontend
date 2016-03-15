@@ -69,56 +69,101 @@
         </div>
     </header>
 
-    <div class="col-md-16 col-md-offset-1">
-        <div class="col-md-6 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Wykres Prezentujący wyniki wyborcze w Skali Kraju</h3>
+    <div class="container-fluid">
+        <div class="col-md-16 col-md-offset-1">
+            <div class="col-md-6 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Wykres Prezentujący wyniki wyborcze w Skali Kraju</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div general-results-chart></div>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <div general-results-chart></div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Liczba otrzymanych protokołów wyborczych dla Całego Kraju</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div protocol-count-chart></div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Frekwencja Wyborcza Zbiorcza dla Całego Kraju</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div turnout-results-chart></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Liczba otrzymanych protokołów wyborczych dla Całego Kraju</h3>
-                </div>
+
+        <div class="col-md-16 col-md-offset-1">
+            <div class="panel">
                 <div class="panel-body">
-                    <div protocol-count-chart></div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Frekwencja Wyborcza Zbiorcza dla Całego Kraju</h3>
-                </div>
-                <div class="panel-body">
-                    <div turnout-results-chart></div>
+                    <div class="col-md-7 col-md-offset-2" data-election-map election-type="PARLIAMENT" scale="100%" selected-district="district"></div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <div class="col-md-10 col-md-offset-1">
+            <div ng-controller="districtCtrl as tableDistrict">
+                <table datatable="" dt-options="tableDistrict.dtOptions" dt-columns="tableDistrict.dtColumns" class="row-border hover" width="100%"></table>
+            </div>
+            <!--<div ng-controller="committeesCtrl as tableCommittees">-->
+                <!--<table datatable="" dt-options="tableCommittees.dtOptions" dt-columns="tableCommittees.dtColumns" class="row-border hover"></table>-->
+            <!--</div>-->
+            <!--<div ng-controller="candidatesCtrl as tableCandidates">-->
+                <!--<table datatable="" dt-options="tableCandidates.dtOptions" dt-columns="tableCandidates.dtColumns" class="row-border hover"></table>-->
+            <!--</div>-->
+        </div>
     </div>
 
-    <div class="col-md-16 col-md-offset-1">
-        <div class="hpanel">
-            <div class="panel-body">
-                <div class="col-md-7 col-md-offset-2" data-election-map election-type="PARLIAMENT" scale="100%" selected-district="mainCtrl.district"></div>
+    <div id="second-page" class="page-splitter"></div>
+    <div class="container-fluid" ng-if="district.id" ng-controller="districtChartController as districtChartCtrl">
+        <h3 class="col-md-10 col-md-offset-1 district-title">{{ district.id }}, {{ district.name }}</h3>
+        <div class="col-md-16 col-md-offset-1">
+            <div class="col-md-6 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Wykres Prezentujący wyniki wyborcze w Skali Okręgu</h3>
+                    </div>
+                    <div class="panel-body">
+                        <chartist class="ct-chart ct-golden-section"
+                                  chartist-data="districtChartCtrl.districtGeneralResults"
+                                  chartist-chart-options="districtChartCtrl.districtOptions"
+                                  chartist-events="districtChartCtrl.districtEvents"
+                                  chartist-chart-type="Bar"></chartist>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Liczba otrzymanych protokołów wyborczych w Skali Okręgu</h3>
+                    </div>
+                    <div class="panel-body">
+                        <chartist class="ct-chart ct-golden-section"
+                                  chartist-data="districtChartCtrl.districtProtocolCount"
+                                  chartist-chart-type="Pie"></chartist>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Frekwencja Wyborcza Zbiorcza w Skali Okręgu</h3>
+                    </div>
+                    <div class="panel-body">
+                        <chartist class="ct-chart ct-golden-section"
+                                  chartist-data="districtChartCtrl.districtTurnoutData"
+                                  chartist-chart-type="Pie"></chartist>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-10 col-md-offset-1">
-        <div ng-controller="districtCtrl as tableDistrict">
-            <table datatable="" dt-options="tableDistrict.dtOptions" dt-columns="tableDistrict.dtColumns" class="row-border hover" width="100%"></table>
-        </div>
-        <!--<div ng-controller="committeesCtrl as tableCommittees">-->
-            <!--<table datatable="" dt-options="tableCommittees.dtOptions" dt-columns="tableCommittees.dtColumns" class="row-border hover"></table>-->
-        <!--</div>-->
-        <!--<div ng-controller="candidatesCtrl as tableCandidates">-->
-            <!--<table datatable="" dt-options="tableCandidates.dtOptions" dt-columns="tableCandidates.dtColumns" class="row-border hover"></table>-->
-        <!--</div>-->
     </div>
 
     <div class="row"></div>
@@ -174,6 +219,7 @@
     <script src="../bower_components/tooltipster/js/jquery.tooltipster.js"></script>
     <script src="../bower_components/datatables/media/js/jquery.dataTables.js"></script>
     <script src="../bower_components/chartist/dist/chartist.js"></script>
+    <script src="../bower_components/angular-chartist.js/dist/angular-chartist.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
     <script src="../bower_components/angular-datatables/dist/angular-datatables.js"></script>
     <script src="../bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>

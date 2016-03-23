@@ -9,7 +9,7 @@ class DistrictDataService {
 
     loadTableData() {
         var deferred = Q.get(DistrictDataService.instance).defer();
-        DistrictDataService.instance.data = HTTP.get(DistrictDataService.instance).get('http://rumcajs.open-pkw.pl:9080/openpkw/districts').then((data) => {
+        DistrictDataService.instance.data = HTTP.get(DistrictDataService.instance).get('/api/openpkw/districts').then((data) => {
             var districts = data.data.districts;
             var result = new Map();
             for (let district of districts) {

@@ -362,16 +362,15 @@ module.exports = function(grunt) {
                 }
             },
             proxies: [{
-                context: '/openpkw-dokument-generator',
+                context: '/api',
                 host: config.backendProxy,
                 port: 9080,
                 https: false,
                 xforward: false,
                 rewrite: {
-                    '^(\/openpkw-dokument-generator[/]{0,1})(.*)$': '/openpkw-dokument-generator/$2'
+                    '^(\/api[/]{0,1})(.*)$': '/$2'
                 }
             }]
-
         },
 
         scp: {

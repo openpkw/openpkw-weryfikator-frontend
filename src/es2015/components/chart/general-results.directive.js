@@ -22,9 +22,20 @@ class GeneralResultsDirective {
                 axisY: {
                     offset: 80,
                     labelInterpolationFnc: function(value) {
-                        return value.toFixed(1) + ' %'
+                        return value.toFixed(0) + ' %'
                     },
                     scaleMinSpace: 50
+                },
+                axisX: {
+                    labelInterpolationFnc: function(value) {
+                        value = value.replace(/KW/,'')
+                        value = value.replace(/Wyborców/,'')
+                        if (value.length > 20) {
+                            return value.substring(0, 20) + "...";
+                        } else {
+                            return value;
+                        }
+                    }                    
                 }
             };
             new Chartist.Bar('#general-results', data.chart, options).on('draw', function(data) {
@@ -35,7 +46,7 @@ class GeneralResultsDirective {
                 }
                 if(data.type === 'bar') {
                     data.element.attr({
-                        style: 'stroke-width: 40px; stroke: #0000ff'
+                        style: 'stroke-width: 20px; stroke: #008000'
                     });
                 }
             });

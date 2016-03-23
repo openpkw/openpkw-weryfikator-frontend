@@ -11,14 +11,19 @@
     transform: rotate(-90deg);
     transform-origin: 100% 0;
     text-align: right;
-    max-height: 1.5em;
+    max-height: 2.5em;
     min-width: 100px;
     max-width: 100px;
 }
 
+<<<<<<< Updated upstream
 .district-title {
     text-align: center;
     border: 1px solid #2c3e50;
+=======
+.ct-label {
+    color: black;
+>>>>>>> Stashed changes
 }
 
 .tooltipster-content {
@@ -61,11 +66,11 @@ header {
 }
 
 .ct-label {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 
 .ct-series-a .ct-area, .ct-series-a .ct-slice-pie  {
-    fill: #000088;
+    fill: #008000;
 }
 
 .ct-chart-pie .ct-label {
@@ -73,7 +78,7 @@ header {
 }
 
 .ct-series-b .ct-area, .ct-series-b .ct-slice-pie {
-    fill: #0000ff;
+    fill: #d00000;
 }
 
 body {

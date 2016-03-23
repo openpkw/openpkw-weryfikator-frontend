@@ -6,7 +6,7 @@ var config = {
     gen: 'gen', // gen sources
     dist: 'dist', // builded app
     livereloadPort: 35729,
-    backendProxy: 'dobromir.openpkw.pl'
+    backendProxy: 'rumcajs.open-pkw.pl'
 };
 
 try {

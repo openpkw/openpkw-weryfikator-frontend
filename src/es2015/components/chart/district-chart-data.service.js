@@ -9,7 +9,7 @@ class DistrictChartDataService {
 
     loadPollingData(districtNumber) {
         var deferred = Q.get(DistrictChartDataService.instance).defer();
-        DistrictChartDataService.instance.data = HTTP.get(DistrictChartDataService.instance).get('http://rumcajs.open-pkw.pl:9080/openpkw/votes?districtCommitteeNumber=' + districtNumber).then((data) => {
+        DistrictChartDataService.instance.data = HTTP.get(DistrictChartDataService.instance).get('/api/openpkw/districtVotes/' + districtNumber).then((data) => {
             deferred.resolve(data);
             return deferred.promise;
         });

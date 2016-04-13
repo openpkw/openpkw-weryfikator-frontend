@@ -28,13 +28,7 @@ class GeneralResultsDirective {
                 },
                 axisX: {
                     labelInterpolationFnc: function(value) {
-                        value = value.replace(/KW/,'')
-                        value = value.replace(/Wyborców/,'')
-                        if (value.length > 20) {
-                            return value.substring(0, 20) + "...";
-                        } else {
-                            return value;
-                        }
+                        return value;
                     }                    
                 }
             };

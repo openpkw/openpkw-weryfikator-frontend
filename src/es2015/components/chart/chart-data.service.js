@@ -30,7 +30,7 @@ class ChartDataService {
 
             var result = {
                 "chart": {
-                    "labels": votes.map((item) => item.name.replace('Komitet Wyborczy', 'KW')),
+                    "labels": votes.map((item) => item.symbol),
                     "series": [
                         series
                     ]

@@ -47,7 +47,7 @@ class ChartDataService {
         ChartDataService.instance.data.then((data) => {
             var result = {
                 "chart": {
-                    "labels": ["Odebrane", "Nieodebrane"],
+                    "labels": ["Otrzymane", "Nieotrzymane"],
                     "series": [data.data.protocolNumber, data.data.protocolAllNumber - data.data.protocolNumber]
                 },
                 "sum": data.data.protocolAllNumber

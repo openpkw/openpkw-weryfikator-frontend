@@ -7,16 +7,16 @@ function districtCtrl(districtDataService, DTOptionsBuilder, DTColumnBuilder) {
         .withPaginationType('full_numbers')
         .withLanguage({
             "sEmptyTable":     "Brak danych w tabeli",
-            "sInfo":           "Wyświetlam _START_ do _END_ z _TOTAL_ rekordów",
-            "sInfoEmpty":      "Wyświetlam 0 do 0 z 0 rekordów",
-            "sInfoFiltered":   "(filtruje ze _MAX_ wszystkich rekordów)",
+            "sInfo":           "Wyświetlam wiersze od _START_ do _END_ spośród _TOTAL_ wierszy",
+            "sInfoEmpty":      "Wyświetlam 0 wierszy",
+            "sInfoFiltered":   "(filtruję ze _MAX_ wszystkich wierszy)",
             "sInfoPostFix":    "",
             "sInfoThousands":  ",",
-            "sLengthMenu":     "Pokaz _MENU_ rekordy",
+            "sLengthMenu":     "Pokaż _MENU_ wierszy",
             "sLoadingRecords": "Ładowanie...",
             "sProcessing":     "Przetwarzanie...",
             "sSearch":         "Szukaj:",
-            "sZeroRecords":    "Brak rekordów spełniających kryteria",
+            "sZeroRecords":    "Brak wierszy spełniających kryteria",
             "oPaginate": {
                 "sFirst":    "Pierwsza",
                 "sLast":     "Ostania",
@@ -29,10 +29,10 @@ function districtCtrl(districtDataService, DTOptionsBuilder, DTColumnBuilder) {
             }
         });
     vm.dtColumns = [
-        DTColumnBuilder.newColumn('number').withTitle('Nr Okręgu'),
-        DTColumnBuilder.newColumn('name').withTitle('Siedziba Komisji Okręgowej'),
-        DTColumnBuilder.newColumn('cities').withTitle('Miasta'),
-        DTColumnBuilder.newColumn('peripherals').withTitle('Liczba otrzymanych protokołów %')
+        DTColumnBuilder.newColumn('number').withTitle('Nr okręgu'),
+        DTColumnBuilder.newColumn('name').withTitle('Nazwa Komisji Okręgowej'),
+        DTColumnBuilder.newColumn('cities').withTitle('Siedziba Komisji Okręgowej'),
+        DTColumnBuilder.newColumn('peripherals').withTitle('Procentowa liczba otrzymanych protokołów')
     ];
 }
 

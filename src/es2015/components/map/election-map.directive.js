@@ -64,8 +64,6 @@ class ElectionMapDirective {
                         } else {
                             prepareItem(key, rgb(0,0,shade));
                         }
-                    } else {
-                        prepareItem(key, '#aaaaff');
                     }
                 }
             });

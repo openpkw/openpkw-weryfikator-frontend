@@ -15,7 +15,7 @@ class TurnoutResultsDirective {
     }
 
     link(scope, elem, attrs) {
-        SERVICE.get(TurnoutResultsDirective.instance).getProtocolCount().then((data) => {
+        SERVICE.get(TurnoutResultsDirective.instance).getTurnoutData().then((data) => {
             new Chartist.Pie('#turnout-results', data.chart, {});
         });
     }

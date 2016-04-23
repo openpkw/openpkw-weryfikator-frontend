@@ -3,6 +3,7 @@ const DISTRICT_SERVICE = new WeakMap();
 const LOCATION = new WeakMap();
 const ANCHOR_SCROLL = new WeakMap();
 
+const DEFAULT_DISTRICT_COLOUR = '#99cc33';
 const HIGHLIGHTED_DISTRICT_COLOUR = '#008800';
 
 class ElectionMapDirective {
@@ -60,9 +61,9 @@ class ElectionMapDirective {
                     if (data.has(value)) {
                         var shade = parseInt(255 - 200 * (data.get(value).peripherals / 100));
                         if (shouldSetTooltip) {
-                            prepareItem(key, rgb(0,0,shade), data.get(value).name, data.get(value).peripherals);
+                            prepareItem(key, DEFAULT_DISTRICT_COLOUR, data.get(value).name, data.get(value).peripherals);
                         } else {
-                            prepareItem(key, rgb(0,0,shade));
+                            prepareItem(key, DEFAULT_DISTRICT_COLOUR);
                         }
                     }
                 }

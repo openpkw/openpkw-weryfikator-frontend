@@ -3,6 +3,8 @@ const DISTRICT_SERVICE = new WeakMap();
 const LOCATION = new WeakMap();
 const ANCHOR_SCROLL = new WeakMap();
 
+const HIGHLIGHTED_DISTRICT_COLOUR = '#008800';
+
 class ElectionMapDirective {
 
     constructor(electionMapService, districtDataService, $location, $anchorScroll) {
@@ -82,7 +84,7 @@ class ElectionMapDirective {
                         }
                     )
                 });
-                elem.find('#' + event.target.id).css('fill', '#888888');
+                elem.find('#' + event.target.id).css('fill', HIGHLIGHTED_DISTRICT_COLOUR);
                 LOCATION.get(ElectionMapDirective.instance).hash("second-page");
                 ANCHOR_SCROLL.get(ElectionMapDirective.instance)();
             });

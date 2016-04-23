@@ -33,6 +33,9 @@ function districtCtrl(districtDataService, DTOptionsBuilder, DTColumnBuilder) {
         DTColumnBuilder.newColumn('name').withTitle('Nazwa Komisji Okręgowej'),
         DTColumnBuilder.newColumn('cities').withTitle('Siedziba Komisji Okręgowej'),
         DTColumnBuilder.newColumn('peripherals').withTitle('Procentowa liczba otrzymanych protokołów')
+        .renderWith(function(data, type, full, meta){
+            return '<div style="text-align: right; width: 150px; display:inline-block;">' + data + '%</div>';
+        })
     ];
 }
 

@@ -30,7 +30,7 @@ class DistrictChartDataService {
 
             var result = {
                 "chart": {
-                    "labels": votes.map((item) => item.name.replace('Komitet Wyborczy', 'KW')),
+                    "labels": votes.map((item) => item.symbol),
                     "series": [
                         series
                     ]
@@ -74,6 +74,7 @@ class DistrictChartDataService {
 
     static factory($q, $http) {
         DistrictChartDataService.instance = new DistrictChartDataService($q, $http);
+        DistrictChartDataService.instance.loadPollingData();
         return DistrictChartDataService.instance;
     }
 }

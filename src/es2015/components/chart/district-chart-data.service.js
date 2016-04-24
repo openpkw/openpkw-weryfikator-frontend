@@ -19,7 +19,7 @@ class DistrictChartDataService {
     getGeneralResults() {
         var deferred = Q.get(DistrictChartDataService.instance).defer();
         DistrictChartDataService.instance.data.then((data) => {
-            var votes = data.data.voteCommittees.sort((a, b) => {
+            var votes = data.data.allVoteCommittees.sort((a, b) => {
                 if (a.votes < b.votes) return 1;
                 if (a.votes > b.votes) return -1;
                 return 0;
@@ -74,7 +74,6 @@ class DistrictChartDataService {
 
     static factory($q, $http) {
         DistrictChartDataService.instance = new DistrictChartDataService($q, $http);
-        DistrictChartDataService.instance.loadPollingData();
         return DistrictChartDataService.instance;
     }
 }

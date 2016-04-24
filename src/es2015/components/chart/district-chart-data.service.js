@@ -62,7 +62,7 @@ class DistrictChartDataService {
         DistrictChartDataService.instance.data.then((data) => {
             var result = {
                 "chart": {
-                    "labels": ["Odebrane", "Nieodebrane"],
+                    "labels": ["Głosy oddane", "Głosy nieoddane"],
                     "series": [data.data.votersVoteNumber, data.data.allVotersNumber - data.data.votersVoteNumber]
                 },
                 "sum": data.data.allVotersNumber

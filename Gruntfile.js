@@ -1,4 +1,4 @@
-﻿/*global require, module*/
+/*global require, module*/
 'use strict';
 
 var config = {
@@ -6,7 +6,7 @@ var config = {
     gen: 'gen', // gen sources
     dist: 'dist', // builded app
     livereloadPort: 35729,
-    backendProxy: 'rumcajs.open-pkw.pl'
+    backendProxy: 'localhost'
 };
 
 try {
@@ -364,7 +364,7 @@ module.exports = function(grunt) {
             proxies: [{
                 context: '/api',
                 host: config.backendProxy,
-                port: 9080,
+                port: 8080,
                 https: false,
                 xforward: false,
                 rewrite: {
@@ -376,7 +376,7 @@ module.exports = function(grunt) {
         scp: {
             test: {
                 options: {
-                    host: 'rumcajs.open-pkw.pl',
+                    host: 'rumcajs.openpkw.pl',
                     port: 1023,
                     username: 'openpkw-cd',
                     privateKey: scpPrivateKey,
